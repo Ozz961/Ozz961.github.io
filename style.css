@@ -1315,3 +1315,151 @@ footer {
         padding-right: 18px;
     }
 }
+
+/* -------------------------
+   CERTIFICATIONS
+------------------------- */
+
+.certifications-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.certification-card {
+    position: relative;
+    min-height: 250px;
+    padding: 27px;
+
+    border: 1px solid var(--border);
+    border-radius: 11px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.025),
+            rgba(155, 92, 255, 0.018)
+        );
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        background 0.25s ease;
+}
+
+.certification-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--border-hover);
+    background: var(--surface-hover);
+}
+
+.featured-cert {
+    background:
+        radial-gradient(
+            circle at 90% 10%,
+            rgba(155, 92, 255, 0.14),
+            transparent 30%
+        ),
+        linear-gradient(
+            145deg,
+            rgba(155, 92, 255, 0.08),
+            rgba(255, 255, 255, 0.02)
+        );
+}
+
+.certification-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 15px;
+
+    margin-bottom: 28px;
+}
+
+.certification-issuer {
+    color: var(--purple-bright);
+
+    font-family: "JetBrains Mono", monospace;
+
+    font-size: 0.57rem;
+
+    letter-spacing: 1.5px;
+}
+
+.certification-date {
+    color: #6e6878;
+
+    font-family: "JetBrains Mono", monospace;
+
+    font-size: 0.57rem;
+}
+
+.certification-card h3 {
+    font-size: 1.15rem;
+
+    line-height: 1.35;
+
+    margin-bottom: 12px;
+}
+
+.certification-card p {
+    color: var(--muted);
+
+    font-size: 0.82rem;
+
+    line-height: 1.7;
+}
+
+.certification-bottom {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin-top: 25px;
+
+    padding-top: 16px;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.certification-bottom span {
+    color: #666071;
+
+    font-family: "JetBrains Mono", monospace;
+
+    font-size: 0.55rem;
+}
+
+.certification-bottom a {
+    color: var(--purple-bright);
+
+    font-family: "JetBrains Mono", monospace;
+
+    font-size: 0.61rem;
+
+    text-decoration: none;
+
+    white-space: nowrap;
+}
+
+.certification-bottom a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 700px) {
+
+    .certifications-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .certification-bottom {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+}
