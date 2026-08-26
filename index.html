@@ -1,119 +1,213 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Ozz961 — Offensive AI in Cybersecurity</title>
+    <title>
+        Ozz961 — Cybersecurity · Offensive Security · AI Security
+    </title>
 
-    <meta
-        name="description"
-        content="Ozz961 — Cybersecurity, penetration testing, AppSec, AI security, research, tooling, writeups, notes and projects."
-    >
+    <meta name="description"
+        content="Ozz961 — Cybersecurity, penetration testing, AppSec, AI security, research, tooling, writeups, notes, projects, experience and education.">
 
     <meta name="theme-color" content="#08070d">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
+
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
-        rel="stylesheet"
-    >
+        rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
+
 </head>
+
 
 <body>
 
     <div class="ambient ambient-one"></div>
     <div class="ambient ambient-two"></div>
 
-    <!-- NAVIGATION -->
+
+    <!-- =========================
+         NAVIGATION
+    ========================== -->
+
     <header class="navbar">
 
-        <a href="#" class="brand">
-            <span class="brand-mark">&gt;_</span>
-            <span>Ozz961</span>
+        <a href="/" class="brand">
+
+            <span class="brand-mark">
+                &gt;_
+            </span>
+
+            <span>
+                Ozz961
+            </span>
+
         </a>
 
+
         <nav class="nav-links">
-            <a href="#writeups">Writeups</a>
-            <a href="#projects">Projects</a>
-            <a href="#tools">Tools</a>
-            <a href="#notes">Notes</a>
-            <a href="#research">Research</a>
-            <a href="#about">About</a>
-            <a href="#certifications">Certifications</a>
+
+            <a href="/writeups/">
+                Writeups
+            </a>
+
+            <a href="/projects/">
+                Projects
+            </a>
+
+            <a href="/tools/">
+                Tools
+            </a>
+
+            <a href="/notes/">
+                Notes
+            </a>
+
+            <a href="/research/">
+                Research
+            </a>
+
+            <a href="/guides/">
+                Guides
+            </a>
+
+            <a href="/certifications/">
+                Certifications
+            </a>
+
+            <a href="/experience/">
+                Experience
+            </a>
+
+            <a href="/education/">
+                Education
+            </a>
+
+            <a href="/about/">
+                About
+            </a>
+
         </nav>
 
-        <a
-            href="https://github.com/Ozz961"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="github-link"
-        >
+
+        <a href="https://github.com/Ozz961" target="_blank" rel="noopener noreferrer" class="github-link">
             GitHub ↗
         </a>
 
     </header>
 
 
+
     <main>
 
-        <!-- HERO -->
+
+        <!-- =========================
+             HERO
+        ========================== -->
+
         <section class="hero">
 
             <div class="hero-grid"></div>
 
+
             <div class="hero-content">
 
+
                 <div class="status-pill">
+
                     <span class="status-dot"></span>
+
                     Building &amp; learning in public
+
                 </div>
+
 
                 <p class="eyebrow">
                     CYBERSECURITY · OFFENSIVE SECURITY
                 </p>
 
+
                 <h1>
+
                     Breaking things.
+
                     <br>
-                    <span>Understanding them.</span>
+
+                    <span>
+                        Understanding them.
+                    </span>
+
                 </h1>
 
+
                 <p class="hero-text">
-                    A professional security portfolio documenting penetration
-                    testing, application security, AI security, research,
-                    tooling, projects, writeups, notes, and everything I
-                    learn along the way.
+
+                    A professional security portfolio documenting
+                    penetration testing, application security, AI security,
+                    security research, tooling, projects, writeups,
+                    notes and everything I learn along the way.
+
                 </p>
+
 
                 <div class="hero-actions">
 
-                    <a href="#writeups" class="btn btn-primary">
+
+                    <a href="/writeups/" class="btn btn-primary">
+
                         Explore the lab
-                        <span>↗</span>
+
+                        <span>
+                            ↗
+                        </span>
+
                     </a>
 
-                    <a href="#about" class="btn btn-secondary">
+
+                    <a href="/about/" class="btn btn-secondary">
                         About me
                     </a>
 
+
                 </div>
 
+
                 <div class="hero-meta">
-                    <span>Penetration Testing</span>
-                    <span>AppSec</span>
-                    <span>AI Security</span>
-                    <span>Security Research</span>
+
+                    <span>
+                        Penetration Testing
+                    </span>
+
+                    <span>
+                        AppSec
+                    </span>
+
+                    <span>
+                        AI Security
+                    </span>
+
+                    <span>
+                        Security Research
+                    </span>
+
                 </div>
+
 
             </div>
 
 
             <!-- TERMINAL -->
+
+
             <div class="hero-terminal">
 
                 <div class="terminal-top">
@@ -130,171 +224,342 @@
 
                 </div>
 
-                <div
-                    class="terminal-body"
-                    id="terminal-output"
-                ></div>
+
+                <div class="terminal-stage">
+
+                    <span class="terminal-stage-number" id="terminal-stage-number">
+                        01
+                    </span>
+
+                    <span class="terminal-stage-name" id="terminal-stage-name">
+                        RECONNAISSANCE
+                    </span>
+
+                </div>
+
+
+                <div class="terminal-body" id="terminal-output"></div>
+
+
+                <div class="terminal-progress">
+
+                    <span class="terminal-progress-item active"></span>
+                    <span class="terminal-progress-item"></span>
+                    <span class="terminal-progress-item"></span>
+                    <span class="terminal-progress-item"></span>
+                    <span class="terminal-progress-item"></span>
+
+                </div>
 
             </div>
+
+            </div>
+
 
         </section>
 
 
-        <!-- FOCUS -->
-        <section class="section" id="focus">
+
+        <!-- =========================
+             FOCUS
+        ========================== -->
+
+        <section class="section">
+
 
             <div class="section-header">
 
+
                 <div>
-                    <span class="section-number">01</span>
-                    <span class="section-label">FOCUS</span>
+
+                    <span class="section-number">
+                        01
+                    </span>
+
+                    <span class="section-label">
+                        FOCUS
+                    </span>
+
                 </div>
 
-                <h2>Where I spend my time.</h2>
+
+                <h2>
+                    Where I spend my time.
+                </h2>
+
 
                 <p>
                     Practical security work, research and projects across
                     offensive security and emerging technologies.
                 </p>
 
+
             </div>
+
 
 
             <div class="focus-grid">
 
 
-                <!-- PENETRATION TESTING -->
+                <!-- PENTESTING -->
+
                 <article class="focus-card large">
 
                     <div class="card-top">
-                        <span class="card-icon">01</span>
-                        <span class="card-category">OFFENSIVE</span>
+
+                        <span class="card-icon">
+                            01
+                        </span>
+
+                        <span class="card-category">
+                            OFFENSIVE
+                        </span>
+
                     </div>
 
-                    <h3>Penetration Testing</h3>
+
+                    <h3>
+                        Penetration Testing
+                    </h3>
+
 
                     <p>
-                        Enumeration, exploitation, privilege escalation,
-                        post-exploitation and security methodology.
+                        Reconnaissance, enumeration, exploitation,
+                        privilege escalation and post-exploitation.
                     </p>
 
+
                     <div class="card-tags">
-                        <span>Network</span>
-                        <span>Web</span>
-                        <span>Linux</span>
-                        <span>Windows</span>
+
+                        <span>
+                            Network
+                        </span>
+
+                        <span>
+                            Web
+                        </span>
+
+                        <span>
+                            Linux
+                        </span>
+
+                        <span>
+                            Windows
+                        </span>
+
                     </div>
 
                 </article>
+
 
 
                 <!-- APPSEC -->
+
                 <article class="focus-card">
 
                     <div class="card-top">
-                        <span class="card-icon">02</span>
-                        <span class="card-category">WEB</span>
+
+                        <span class="card-icon">
+                            02
+                        </span>
+
+                        <span class="card-category">
+                            WEB
+                        </span>
+
                     </div>
 
-                    <h3>AppSec</h3>
+
+                    <h3>
+                        AppSec
+                    </h3>
+
 
                     <p>
-                        Web applications, APIs, authentication, authorization
-                        and vulnerability research.
+                        Web applications, APIs, authentication,
+                        authorization and vulnerability research.
                     </p>
 
+
                     <div class="card-tags">
-                        <span>OWASP</span>
-                        <span>APIs</span>
-                        <span>Burp</span>
+
+                        <span>
+                            OWASP
+                        </span>
+
+                        <span>
+                            APIs
+                        </span>
+
+                        <span>
+                            Burp
+                        </span>
+
                     </div>
 
                 </article>
 
 
-                <!-- AI SECURITY -->
+
+                <!-- AI -->
+
                 <article class="focus-card">
 
                     <div class="card-top">
-                        <span class="card-icon">03</span>
-                        <span class="card-category">EMERGING</span>
+
+                        <span class="card-icon">
+                            03
+                        </span>
+
+                        <span class="card-category">
+                            EMERGING
+                        </span>
+
                     </div>
 
-                    <h3>AI Security</h3>
+
+                    <h3>
+                        AI Security
+                    </h3>
+
 
                     <p>
                         AI red teaming, LLM security, prompt injection,
-                        agent security and AI-powered security tooling.
+                        agent security and AI-assisted security workflows.
                     </p>
 
+
                     <div class="card-tags">
-                        <span>LLMs</span>
-                        <span>Red Teaming</span>
-                        <span>Agents</span>
+
+                        <span>
+                            LLMs
+                        </span>
+
+                        <span>
+                            Red Teaming
+                        </span>
+
+                        <span>
+                            Agents
+                        </span>
+
                     </div>
 
                 </article>
+
 
 
                 <!-- TOOLING -->
+
                 <article class="focus-card wide">
 
                     <div class="card-top">
-                        <span class="card-icon">04</span>
-                        <span class="card-category">BUILD</span>
+
+                        <span class="card-icon">
+                            04
+                        </span>
+
+                        <span class="card-category">
+                            BUILD
+                        </span>
+
                     </div>
 
-                    <h3>Security Tooling</h3>
+
+                    <h3>
+                        Security Tooling
+                    </h3>
+
 
                     <p>
-                        Custom tools, automation, scripts and experiments
-                        built to solve security problems.
+                        Custom scripts, automation and experiments built
+                        to solve practical security problems.
                     </p>
 
+
                     <div class="card-tags">
-                        <span>Python</span>
-                        <span>Bash</span>
-                        <span>Automation</span>
-                        <span>Security Engineering</span>
+
+                        <span>
+                            Python
+                        </span>
+
+                        <span>
+                            Bash
+                        </span>
+
+                        <span>
+                            Automation
+                        </span>
+
+                        <span>
+                            Security Engineering
+                        </span>
+
                     </div>
 
                 </article>
+
 
             </div>
 
         </section>
 
 
-        <!-- WRITEUPS -->
-        <section class="section" id="writeups">
+
+        <!-- =========================
+             WRITEUPS
+        ========================== -->
+
+        <section class="section">
+
 
             <div class="section-header split">
 
-                <div>
-                    <span class="section-number">02</span>
-                    <span class="section-label">WRITEUPS</span>
 
-                    <h2>Things I've broken.</h2>
+                <div>
+
+                    <span class="section-number">
+                        02
+                    </span>
+
+                    <span class="section-label">
+                        WRITEUPS
+                    </span>
+
+
+                    <h2>
+                        Things I've broken.
+                    </h2>
+
 
                     <p>
                         Hands-on labs, challenges and security experiments.
                     </p>
+
+
                 </div>
 
-                <a href="#" class="text-link">
+
+                <a href="/writeups/" class="text-link">
                     View all →
                 </a>
 
+
             </div>
+
 
 
             <div class="writeup-list">
 
 
                 <!-- HTB -->
-                <a href="#" class="writeup-item">
 
-                    <div class="writeup-number">01</div>
+                <a href="/writeups/htb/" class="writeup-item">
+
+                    <div class="writeup-number">
+                        01
+                    </div>
+
 
                     <div class="writeup-info">
 
@@ -302,16 +567,20 @@
                             HACK THE BOX
                         </span>
 
+
                         <h3>
                             Starting Point — Tier 0: Foundations
                         </h3>
 
+
                         <p>
-                            Meow · Fawn · Dancing · and the fundamentals
-                            of enumeration and exploitation.
+                            Eight beginner-focused machines covering
+                            enumeration, exposed services and basic
+                            exploitation.
                         </p>
 
                     </div>
+
 
                     <span class="writeup-arrow">
                         ↗
@@ -320,10 +589,15 @@
                 </a>
 
 
-                <!-- PENTESTING -->
-                <a href="#" class="writeup-item">
 
-                    <div class="writeup-number">02</div>
+                <!-- PENTESTING -->
+
+                <a href="/writeups/" class="writeup-item">
+
+                    <div class="writeup-number">
+                        02
+                    </div>
+
 
                     <div class="writeup-info">
 
@@ -331,16 +605,19 @@
                             PENTESTING
                         </span>
 
+
                         <h3>
                             Web Application Security
                         </h3>
 
+
                         <p>
-                            Practical notes covering reconnaissance,
-                            authentication, APIs and common vulnerabilities.
+                            Practical reconnaissance, authentication,
+                            API testing and common web vulnerabilities.
                         </p>
 
                     </div>
+
 
                     <span class="writeup-arrow">
                         ↗
@@ -349,10 +626,15 @@
                 </a>
 
 
-                <!-- AI -->
-                <a href="#" class="writeup-item">
 
-                    <div class="writeup-number">03</div>
+                <!-- AI -->
+
+                <a href="/research/" class="writeup-item">
+
+                    <div class="writeup-number">
+                        03
+                    </div>
+
 
                     <div class="writeup-info">
 
@@ -360,16 +642,19 @@
                             AI SECURITY
                         </span>
 
+
                         <h3>
                             AI Security Research
                         </h3>
 
+
                         <p>
-                            Experiments, techniques and lessons from exploring
-                            the security of modern AI systems.
+                            Experiments and research around AI security,
+                            offensive techniques and emerging threats.
                         </p>
 
                     </div>
+
 
                     <span class="writeup-arrow">
                         ↗
@@ -377,41 +662,60 @@
 
                 </a>
 
+
             </div>
 
         </section>
 
 
-        <!-- PROJECTS -->
-        <section class="section" id="projects">
+
+        <!-- =========================
+             PROJECTS
+        ========================== -->
+
+        <section class="section">
+
 
             <div class="section-header split">
 
+
                 <div>
 
-                    <span class="section-number">03</span>
-                    <span class="section-label">PROJECTS</span>
+                    <span class="section-number">
+                        03
+                    </span>
 
-                    <h2>Things I've built.</h2>
+                    <span class="section-label">
+                        PROJECTS
+                    </span>
+
+
+                    <h2>
+                        Things I've built.
+                    </h2>
+
 
                     <p>
                         Security projects, experiments and personal research.
                     </p>
 
+
                 </div>
 
-                <a href="#" class="text-link">
+
+                <a href="/projects/" class="text-link">
                     View all →
                 </a>
 
+
             </div>
+
 
 
             <div class="project-grid">
 
 
-                <!-- AI PROJECT -->
-                <article class="project-card featured">
+                <a href="/projects/" class="project-card featured" style="text-decoration:none;">
 
                     <div class="project-content">
 
@@ -424,27 +728,38 @@
                         </h3>
 
                         <p>
-                            A collection of experiments exploring AI security,
-                            offensive techniques and security automation.
+                            Experiments exploring AI security,
+                            offensive techniques and automation.
                         </p>
 
                         <div class="project-footer">
-                            <span>Research</span>
-                            <span>AI</span>
-                            <span>Security</span>
+
+                            <span>
+                                Research
+                            </span>
+
+                            <span>
+                                AI
+                            </span>
+
+                            <span>
+                                Security
+                            </span>
+
                         </div>
 
                     </div>
+
 
                     <span class="project-number">
                         01
                     </span>
 
-                </article>
+                </a>
 
 
-                <!-- TOOLING -->
-                <article class="project-card">
+
+                <a href="/tools/" class="project-card" style="text-decoration:none;">
 
                     <div class="project-content">
 
@@ -458,25 +773,33 @@
 
                         <p>
                             Custom scripts and tools for reconnaissance,
-                            enumeration and offensive security.
+                            enumeration and offensive security workflows.
                         </p>
 
                         <div class="project-footer">
-                            <span>Python</span>
-                            <span>Automation</span>
+
+                            <span>
+                                Python
+                            </span>
+
+                            <span>
+                                Automation
+                            </span>
+
                         </div>
 
                     </div>
+
 
                     <span class="project-number">
                         02
                     </span>
 
-                </article>
+                </a>
 
 
-                <!-- RESEARCH -->
-                <article class="project-card">
+
+                <a href="/research/" class="project-card" style="text-decoration:none;">
 
                     <div class="project-content">
 
@@ -489,45 +812,75 @@
                         </h3>
 
                         <p>
-                            Vulnerability research, experiments and technical
-                            investigations.
+                            Vulnerability research, experiments and
+                            technical investigations.
                         </p>
 
                         <div class="project-footer">
-                            <span>Research</span>
-                            <span>AppSec</span>
+
+                            <span>
+                                Research
+                            </span>
+
+                            <span>
+                                AppSec
+                            </span>
+
                         </div>
 
                     </div>
+
 
                     <span class="project-number">
                         03
                     </span>
 
-                </article>
+                </a>
+
 
             </div>
 
         </section>
 
 
-        <!-- TOOLS -->
-        <section class="section" id="tools">
 
-            <div class="section-header">
+        <!-- =========================
+             TOOLS
+        ========================== -->
+
+        <section class="section">
+
+
+            <div class="section-header split">
+
 
                 <div>
 
-                    <span class="section-number">04</span>
-                    <span class="section-label">TOOLS</span>
+                    <span class="section-number">
+                        04
+                    </span>
 
-                    <h2>Things I use.</h2>
+                    <span class="section-label">
+                        TOOLS
+                    </span>
+
+
+                    <h2>
+                        Things I use.
+                    </h2>
+
 
                     <p>
                         Tools and technologies used throughout my security work.
                     </p>
 
                 </div>
+
+
+                <a href="/tools/" class="text-link">
+                    View all →
+                </a>
+
 
             </div>
 
@@ -555,17 +908,32 @@
         </section>
 
 
-        <!-- NOTES -->
-        <section class="section" id="notes">
+
+        <!-- =========================
+             NOTES
+        ========================== -->
+
+        <section class="section">
+
 
             <div class="section-header split">
 
+
                 <div>
 
-                    <span class="section-number">05</span>
-                    <span class="section-label">NOTES</span>
+                    <span class="section-number">
+                        05
+                    </span>
 
-                    <h2>Things I'm learning.</h2>
+                    <span class="section-label">
+                        NOTES
+                    </span>
+
+
+                    <h2>
+                        Things I'm learning.
+                    </h2>
+
 
                     <p>
                         Technical notes, concepts, commands and knowledge
@@ -574,9 +942,11 @@
 
                 </div>
 
-                <a href="#" class="text-link">
+
+                <a href="/notes/" class="text-link">
                     View all →
                 </a>
+
 
             </div>
 
@@ -584,869 +954,232 @@
             <div class="focus-grid">
 
 
-                <article class="focus-card">
+                <a href="/notes/" class="focus-card" style="text-decoration:none;">
 
                     <div class="card-top">
-                        <span class="card-icon">01</span>
-                        <span class="card-category">NETWORKING</span>
+
+                        <span class="card-icon">
+                            01
+                        </span>
+
+                        <span class="card-category">
+                            NETWORKING
+                        </span>
+
                     </div>
 
-                    <h3>Networking</h3>
+
+                    <h3>
+                        Networking
+                    </h3>
+
 
                     <p>
-                        TCP/IP, DNS, HTTP, SMB, FTP, SSH and network
-                        enumeration fundamentals.
+                        TCP/IP, DNS, HTTP, SMB, FTP, SSH and
+                        network enumeration fundamentals.
                     </p>
 
+
                     <div class="card-tags">
+
                         <span>TCP/IP</span>
                         <span>DNS</span>
                         <span>SMB</span>
+
                     </div>
 
-                </article>
+                </a>
 
 
-                <article class="focus-card">
+
+                <a href="/notes/" class="focus-card" style="text-decoration:none;">
 
                     <div class="card-top">
-                        <span class="card-icon">02</span>
-                        <span class="card-category">SYSTEMS</span>
+
+                        <span class="card-icon">
+                            02
+                        </span>
+
+                        <span class="card-category">
+                            SYSTEMS
+                        </span>
+
                     </div>
 
-                    <h3>Linux &amp; Windows</h3>
+
+                    <h3>
+                        Linux &amp; Windows
+                    </h3>
+
 
                     <p>
-                        System administration, permissions, processes,
-                        enumeration and privilege escalation.
+                        Systems, permissions, processes, enumeration
+                        and privilege escalation.
                     </p>
 
+
                     <div class="card-tags">
+
                         <span>Linux</span>
                         <span>Windows</span>
                         <span>PrivEsc</span>
+
                     </div>
 
-                </article>
+                </a>
 
 
-                <article class="focus-card">
+
+                <a href="/notes/" class="focus-card" style="text-decoration:none;">
 
                     <div class="card-top">
-                        <span class="card-icon">03</span>
-                        <span class="card-category">WEB</span>
+
+                        <span class="card-icon">
+                            03
+                        </span>
+
+                        <span class="card-category">
+                            WEB
+                        </span>
+
                     </div>
 
-                    <h3>Web Security</h3>
+
+                    <h3>
+                        Web Security
+                    </h3>
+
 
                     <p>
-                        XSS, IDOR, SQL injection, authentication, APIs,
-                        access control and modern AppSec concepts.
+                        XSS, IDOR, SQL injection, authentication,
+                        APIs and access control.
                     </p>
 
+
                     <div class="card-tags">
+
                         <span>OWASP</span>
                         <span>APIs</span>
                         <span>AppSec</span>
+
                     </div>
 
-                </article>
+                </a>
 
 
-                <article class="focus-card">
+
+                <a href="/notes/" class="focus-card" style="text-decoration:none;">
 
                     <div class="card-top">
-                        <span class="card-icon">04</span>
-                        <span class="card-category">AI</span>
+
+                        <span class="card-icon">
+                            04
+                        </span>
+
+                        <span class="card-category">
+                            AI
+                        </span>
+
                     </div>
 
-                    <h3>AI Security</h3>
+
+                    <h3>
+                        AI Security
+                    </h3>
+
 
                     <p>
-                        LLM security, prompt injection, AI red teaming,
-                        agents and AI security concepts.
+                        LLM security, prompt injection, AI red teaming
+                        and agent security.
                     </p>
 
+
                     <div class="card-tags">
+
                         <span>LLMs</span>
                         <span>Agents</span>
                         <span>Red Team</span>
+
                     </div>
 
-                </article>
+                </a>
+
 
             </div>
 
         </section>
 
 
-        <!-- RESEARCH -->
-        <section class="section research-section" id="research">
+
+        <!-- =========================
+             RESEARCH
+        ========================== -->
+
+        <section class="section">
+
 
             <div class="research-box">
 
+
                 <div class="research-content">
+
 
                     <span class="section-label">
                         06 — RESEARCH
                     </span>
 
+
                     <h2>
                         Curiosity is part of the process.
                     </h2>
 
+
                     <p>
-                        Notes, experiments and investigations into things
-                        that break, behave strangely, or are worth understanding.
+                        Research, experiments and investigations into
+                        things that break, behave strangely or are
+                        worth understanding.
                     </p>
 
-                    <a href="#" class="btn btn-primary">
+
+                    <a href="/research/" class="btn btn-primary">
+
                         Explore research
-                        <span>↗</span>
+
+                        <span>
+                            ↗
+                        </span>
+
                     </a>
 
+
                 </div>
 
+
                 <div class="research-decoration">
-                    <span>0x961</span>
+
+                    <span>
+                        0x961
+                    </span>
+
                 </div>
+
 
             </div>
 
         </section>
 
-        <!-- CERTIFICATIONS -->
-<section class="section" id="certifications">
 
-    <div class="section-header split">
 
-        <div>
+        <!-- =========================
+             CERTIFICATIONS
+        ========================== -->
 
-            <span class="section-number">07</span>
-            <span class="section-label">CERTIFICATIONS</span>
+        <section class="section">
 
-            <h2>Credentials &amp; training.</h2>
 
-            <p>
-                Certifications and structured training completed across
-                offensive security, cybersecurity, networking, Linux,
-                programming and security operations.
-            </p>
+            <div class="section-header split">
 
-        </div>
 
-        <a
-            href="https://www.linkedin.com/in/roger-rached/details/certifications/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="text-link"
-        >
-            View LinkedIn ↗
-        </a>
-
-    </div>
-
-
-    <div class="certifications-grid">
-
-
-        <!-- SEMICOLON -->
-        <article class="certification-card featured-cert">
-
-            <div class="certification-top">
-
-                <span class="certification-issuer">
-                    SEMICOLON SECURITY
-                </span>
-
-                <span class="certification-date">
-                    AUG 2026
-                </span>
-
-            </div>
-
-            <h3>
-                Certified Offensive Application Security Associate
-            </h3>
-
-            <p>
-                Offensive application security training focused on
-                practical web security and penetration testing.
-            </p>
-
-            <div class="certification-bottom">
-
-                <span>
-                    Credential ID: 66722344
-                </span>
-
-                <a
-                    href="https://www.linkedin.com/in/roger-rached/overlay/Certifications/794451836/treasury/?profileId=ACoAADOwByIB-mNqBVZPQHLT6ZDNg0smNcUDcOY"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    View credential ↗
-                </a>
-
-            </div>
-
-        </article>
-
-
-        <!-- SEMICOLON -->
-        <article class="certification-card">
-
-            <div class="certification-top">
-
-                <span class="certification-issuer">
-                    SEMICOLON SECURITY
-                </span>
-
-                <span class="certification-date">
-                    JUL 2026
-                </span>
-
-            </div>
-
-            <h3>
-                Information Security Associate
-            </h3>
-
-            <p>
-                Information security training with a focus on
-                web application security.
-            </p>
-
-            <div class="certification-bottom">
-
-                <span>
-                    Credential ID: 38322357
-                </span>
-
-                <a
-                    href="https://www.linkedin.com/in/roger-rached/overlay/Certifications/505686876/treasury/?profileId=ACoAADOwByIB-mNqBVZPQHLT6ZDNg0smNcUDcOY"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    View credential ↗
-                </a>
-
-            </div>
-
-        </article>
-
-
-        <!-- CISCO CYBEROPS -->
-        <article class="certification-card">
-
-            <div class="certification-top">
-
-                <span class="certification-issuer">
-                    CISCO NETWORKING ACADEMY
-                </span>
-
-                <span class="certification-date">
-                    JAN 2026
-                </span>
-
-            </div>
-
-            <h3>
-                Cisco CyberOps Associate
-            </h3>
-
-            <p>
-                Training covering cybersecurity operations and
-                security monitoring fundamentals.
-            </p>
-
-            <div class="certification-bottom">
-
-                <span>
-                    Cisco
-                </span>
-
-                <a
-                    href="https://www.credly.com/badges/850370bc-caff-4c42-8ba3-f0c0c0c9e6e5"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    View credential ↗
-                </a>
-
-            </div>
-
-        </article>
-
-
-        <!-- TCM PROGRAMMING -->
-        <article class="certification-card">
-
-            <div class="certification-top">
-
-                <span class="certification-issuer">
-                    TCM SECURITY
-                </span>
-
-                <span class="certification-date">
-                    NOV 2025
-                </span>
-
-            </div>
-
-            <h3>
-                Programming 100: Fundamentals
-            </h3>
-
-            <p>
-                Programming fundamentals supporting security tooling,
-                scripting and automation.
-            </p>
-
-            <div class="certification-bottom">
-
-                <span>
-                    Credential ID: cert_2qj0b31m
-                </span>
-
-                <a
-                    href="https://www.linkedin.com/in/roger-rached/overlay/Certifications/355824431/treasury/?profileId=ACoAADOwByIB-mNqBVZPQHLT6ZDNg0smNcUDcOY"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    View credential ↗
-                </a>
-
-            </div>
-
-        </article>
-
-
-        <!-- TCM SECURITY FUNDAMENTALS -->
-        <article class="certification-card">
-
-            <div class="certification-top">
-
-                <span class="certification-issuer">
-                    TCM SECURITY
-                </span>
-
-                <span class="certification-date">
-                    OCT 2025
-                </span>
-
-            </div>
-
-            <h3>
-                Practical Security Fundamentals
-            </h3>
-
-            <p>
-                Practical cybersecurity fundamentals and hands-on
-                security concepts.
-            </p>
-
-            <div class="certification-bottom">
-
-                <span>
-                    Credential ID: cert_3r25ht7y
-                </span>
-
-                <a
-                    href="https://www.linkedin.com/in/roger-rached/overlay/Certifications/355620962/treasury/?profileId=ACoAADOwByIB-mNqBVZPQHLT6ZDNg0smNcUDcOY"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    View credential ↗
-                </a>
-
-            </div>
-
-        </article>
-
-
-        <!-- LINUX -->
-        <article class="certification-card">
-
-            <div class="certification-top">
-
-                <span class="certification-issuer">
-                    TCM SECURITY
-                </span>
-
-                <span class="certification-date">
-                    SEP 2025
-                </span>
-
-            </div>
-
-            <h3>
-                Linux 100: Fundamentals
-            </h3>
-
-            <p>
-                Linux fundamentals supporting system administration
-                and offensive security workflows.
-            </p>
-
-            <div class="certification-bottom">
-
-                <span>
-                    Credential ID: cert_lrf9k1gm
-                </span>
-
-                <a
-                    href="https://www.linkedin.com/in/roger-rached/overlay/Certifications/1118497530/treasury/?profileId=ACoAADOwByIB-mNqBVZPQHLT6ZDNg0smNcUDcOY"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    View credential ↗
-                </a>
-
-            </div>
-
-        </article>
-
-
-        <!-- THM CYBER SECURITY 101 -->
-        <article class="certification-card">
-
-            <div class="certification-top">
-
-                <span class="certification-issuer">
-                    TRYHACKME
-                </span>
-
-                <span class="certification-date">
-                    FEB 2025
-                </span>
-
-            </div>
-
-            <h3>
-                Cyber Security 101
-            </h3>
-
-            <p>
-                Foundational cybersecurity training covering core
-                security concepts and practical skills.
-            </p>
-
-            <div class="certification-bottom">
-
-                <span>
-                    THM-7ITWYHKEUO
-                </span>
-
-                <a
-                    href="https://tryhackme.com/certificate/THM-7ITWYHKEUO"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    View credential ↗
-                </a>
-
-            </div>
-
-        </article>
-
-
-        <!-- BLUE TEAM -->
-        <article class="certification-card">
-
-            <div class="certification-top">
-
-                <span class="certification-issuer">
-                    SECURITY BLUE TEAM
-                </span>
-
-                <span class="certification-date">
-                    JAN 2025
-                </span>
-
-            </div>
-
-            <h3>
-                Blue Team Junior Analyst
-            </h3>
-
-            <p>
-                Defensive security and junior analyst training focused
-                on blue-team fundamentals.
-            </p>
-
-            <div class="certification-bottom">
-
-                <span>
-                    Credential ID: 240122180
-                </span>
-
-                <a
-                    href="https://elearning.securityblue.team/home/certificate/240122180"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    View credential ↗
-                </a>
-
-            </div>
-
-        </article>
-
-
-        <!-- MENTAL HEALTH -->
-        <article class="certification-card">
-
-            <div class="certification-top">
-
-                <span class="certification-issuer">
-                    SECURITY BLUE TEAM
-                </span>
-
-                <span class="certification-date">
-                    DEC 2024
-                </span>
-
-            </div>
-
-            <h3>
-                Mental Health in Cybersecurity
-            </h3>
-
-            <p>
-                Professional development training focused on mental
-                health awareness within cybersecurity.
-            </p>
-
-            <div class="certification-bottom">
-
-                <span>
-                    Credential ID: 134890422
-                </span>
-
-                <a
-                    href="https://elearning.securityblue.team/home/certificate/134890422"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    View credential ↗
-                </a>
-
-            </div>
-
-        </article>
-
-
-        <!-- GOOGLE -->
-        <article class="certification-card">
-
-            <div class="certification-top">
-
-                <span class="certification-issuer">
-                    GOOGLE
-                </span>
-
-                <span class="certification-date">
-                    MAR 2024
-                </span>
-
-            </div>
-
-            <h3>
-                Google Cybersecurity Professional Certificate
-            </h3>
-
-            <p>
-                Structured cybersecurity training covering security
-                operations, SIEM, cyber defense and core security concepts.
-            </p>
-
-            <div class="certification-bottom">
-
-                <span>
-                    9JZZDDLN6F3N
-                </span>
-
-                <a
-                    href="https://www.coursera.org/account/accomplishments/specialization/9JZZDDLN6F3N"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    View credential ↗
-                </a>
-
-            </div>
-
-        </article>
-
-
-        <!-- OSINT -->
-        <article class="certification-card">
-
-            <div class="certification-top">
-
-                <span class="certification-issuer">
-                    TCM SECURITY
-                </span>
-
-                <span class="certification-date">
-                    NOV 2022
-                </span>
-
-            </div>
-
-            <h3>
-                Open-Source Intelligence (OSINT) Fundamentals
-            </h3>
-
-            <p>
-                Fundamentals of open-source intelligence collection
-                and investigation techniques.
-            </p>
-
-            <div class="certification-bottom">
-
-                <span>
-                    Credential ID: cert_4kbwcnhg
-                </span>
-
-                <a
-                    href="https://academy.tcm-sec.com/courses/1214089/certificate"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    View credential ↗
-                </a>
-
-            </div>
-
-        </article>
-
-
-        <!-- MITRE -->
-        <article class="certification-card">
-
-            <div class="certification-top">
-
-                <span class="certification-issuer">
-                    ATTACKIQ
-                </span>
-
-                <span class="certification-date">
-                    APR 2022
-                </span>
-
-            </div>
-
-            <h3>
-                Foundations of Operationalizing MITRE ATT&amp;CK
-            </h3>
-
-            <p>
-                Training focused on applying the MITRE ATT&amp;CK
-                framework to operational cybersecurity.
-            </p>
-
-            <div class="certification-bottom">
-
-                <span>
-                    Credly credential
-                </span>
-
-                <a
-                    href="https://www.credly.com/badges/db0491f9-c727-46eb-b128-17dc906a0ce9"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    View credential ↗
-                </a>
-
-            </div>
-
-        </article>
-
-
-        <!-- THM WEB -->
-        <article class="certification-card">
-
-            <div class="certification-top">
-
-                <span class="certification-issuer">
-                    TRYHACKME
-                </span>
-
-                <span class="certification-date">
-                    AUG 2022
-                </span>
-
-            </div>
-
-            <h3>
-                Web Fundamentals
-            </h3>
-
-            <p>
-                Foundational web security and web application concepts.
-            </p>
-
-            <div class="certification-bottom">
-
-                <span>
-                    THM-UJAXSIBMFF
-                </span>
-
-                <a
-                    href="https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-UJAXSIBMFF.pdf"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    View credential ↗
-                </a>
-
-            </div>
-
-        </article>
-
-
-        <!-- THM JR PENTESTER -->
-        <article class="certification-card">
-
-            <div class="certification-top">
-
-                <span class="certification-issuer">
-                    TRYHACKME
-                </span>
-
-                <span class="certification-date">
-                    AUG 2022
-                </span>
-
-            </div>
-
-            <h3>
-                Jr Penetration Tester
-            </h3>
-
-            <p>
-                Practical penetration-testing training covering
-                reconnaissance, exploitation and common attack paths.
-            </p>
-
-            <div class="certification-bottom">
-
-                <span>
-                    THM-JSGZD32KXZ
-                </span>
-
-                <a
-                    href="https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-JSGZD32KXZ.pdf"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    View credential ↗
-                </a>
-
-            </div>
-
-        </article>
-
-
-        <!-- THM COMPLETE BEGINNER -->
-        <article class="certification-card">
-
-            <div class="certification-top">
-
-                <span class="certification-issuer">
-                    TRYHACKME
-                </span>
-
-                <span class="certification-date">
-                    MAR 2022
-                </span>
-
-            </div>
-
-            <h3>
-                Complete Beginner
-            </h3>
-
-            <p>
-                Introductory cybersecurity training covering
-                foundational offensive and defensive concepts.
-            </p>
-
-            <div class="certification-bottom">
-
-                <span>
-                    THM-M0LIQAXTUJ
-                </span>
-
-                <a
-                    href="https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-M0LIQAXTUJ.pdf"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    View credential ↗
-                </a>
-
-            </div>
-
-        </article>
-
-
-        <!-- THM PRE SECURITY -->
-        <article class="certification-card">
-
-            <div class="certification-top">
-
-                <span class="certification-issuer">
-                    TRYHACKME
-                </span>
-
-                <span class="certification-date">
-                    JAN 2022
-                </span>
-
-            </div>
-
-            <h3>
-                Pre Security
-            </h3>
-
-            <p>
-                Foundational networking, computing and cybersecurity
-                concepts.
-            </p>
-
-            <div class="certification-bottom">
-
-                <span>
-                    THM-0DWMDZI8VR
-                </span>
-
-                <a
-                    href="https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-0DWMDZI8VR.pdf"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    View credential ↗
-                </a>
-
-            </div>
-
-        </article>
-
-    </div>
-
-</section>
-
-        <!-- ABOUT -->
-        <section class="section about-section" id="about">
-
-            <div class="about-grid">
-
-
-                <!-- ABOUT TITLE -->
                 <div>
 
                     <span class="section-number">
@@ -1454,33 +1187,827 @@
                     </span>
 
                     <span class="section-label">
-                        ABOUT
+                        CERTIFICATIONS
                     </span>
 
+
                     <h2>
-                        Hi, I'm
-                        <span>Roger Rached</span>.
+                        Credentials &amp; training.
                     </h2>
+
+
+                    <p>
+                        Professional credentials and structured security
+                        training.
+                    </p>
+
 
                 </div>
 
 
-                <!-- ABOUT CONTENT -->
+                <a href="/certifications/" class="text-link">
+                    View all →
+                </a>
+
+
+            </div>
+
+
+
+            <div class="certifications-grid">
+
+
+                <a href="/certifications/" class="certification-card featured-cert" style="text-decoration:none;">
+
+                    <div class="certification-top">
+
+                        <span class="certification-issuer">
+                            SEMICOLON SECURITY
+                        </span>
+
+                        <span class="certification-date">
+                            AUG 2026
+                        </span>
+
+                    </div>
+
+
+                    <h3>
+                        Certified Offensive Application Security Associate
+                    </h3>
+
+
+                    <p>
+                        Offensive application security training focused
+                        on practical web security and penetration testing.
+                    </p>
+
+
+                    <div class="certification-bottom">
+
+                        <span>
+                            Credential ID: 66722344
+                        </span>
+
+                        <span>
+                            View credentials ↗
+                        </span>
+
+                    </div>
+
+                </a>
+
+
+
+                <a href="/certifications/" class="certification-card" style="text-decoration:none;">
+
+                    <div class="certification-top">
+
+                        <span class="certification-issuer">
+                            SEMICOLON SECURITY
+                        </span>
+
+                        <span class="certification-date">
+                            JUL 2026
+                        </span>
+
+                    </div>
+
+
+                    <h3>
+                        Information Security Associate
+                    </h3>
+
+
+                    <p>
+                        Information security training with a focus
+                        on web application security.
+                    </p>
+
+
+                    <div class="certification-bottom">
+
+                        <span>
+                            Credential ID: 38322357
+                        </span>
+
+                        <span>
+                            View credentials ↗
+                        </span>
+
+                    </div>
+
+                </a>
+
+
+
+                <a href="/certifications/" class="certification-card" style="text-decoration:none;">
+
+                    <div class="certification-top">
+
+                        <span class="certification-issuer">
+                            CISCO NETWORKING ACADEMY
+                        </span>
+
+                        <span class="certification-date">
+                            JAN 2026
+                        </span>
+
+                    </div>
+
+
+                    <h3>
+                        Cisco CyberOps Associate
+                    </h3>
+
+
+                    <p>
+                        Cybersecurity operations and security monitoring
+                        fundamentals.
+                    </p>
+
+
+                    <div class="certification-bottom">
+
+                        <span>
+                            Cisco
+                        </span>
+
+                        <span>
+                            View credentials ↗
+                        </span>
+
+                    </div>
+
+                </a>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             EXPERIENCE
+        ========================== -->
+
+        <section class="section">
+
+
+            <div class="section-header split">
+
+
+                <div>
+
+                    <span class="section-number">
+                        08
+                    </span>
+
+                    <span class="section-label">
+                        EXPERIENCE
+                    </span>
+
+
+                    <h2>
+                        Where I've worked.
+                    </h2>
+
+
+                    <p>
+                        Professional experience across networking,
+                        infrastructure and security operations.
+                    </p>
+
+                </div>
+
+
+                <a href="/experience/" class="text-link">
+                    View full experience →
+                </a>
+
+
+            </div>
+
+
+
+            <div class="experience-list">
+
+
+                <!-- FIBES -->
+
+                <article class="experience-item">
+
+
+                    <div class="experience-meta">
+
+                        <span class="experience-company">
+                            FIBES.NET
+                        </span>
+
+                        <span class="experience-date">
+                            AUG 2023 — FEB 2026
+                        </span>
+
+                    </div>
+
+
+                    <div class="experience-content">
+
+                        <h3>
+                            Wireless Network Support Technician
+                        </h3>
+
+
+                        <span class="experience-location">
+                            Lebanon
+                        </span>
+
+
+                        <p>
+                            Supported a large client base across wireless
+                            networking and infrastructure, working with
+                            MikroTik and Mimosa equipment, PPPoE/RADIUS,
+                            routing, DNS, DHCP, NAT and Layer 3 switching.
+                        </p>
+
+
+                        <div class="page-tag-row">
+
+                            <span class="page-tag">
+                                MIKROTIK
+                            </span>
+
+                            <span class="page-tag">
+                                MIMOSA
+                            </span>
+
+                            <span class="page-tag">
+                                RADIUS
+                            </span>
+
+                            <span class="page-tag">
+                                PPPoE
+                            </span>
+
+                            <span class="page-tag">
+                                PRTG
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                </article>
+
+
+
+                <!-- CAPITAL OUTSOURCING -->
+
+                <article class="experience-item">
+
+
+                    <div class="experience-meta">
+
+                        <span class="experience-company">
+                            CAPITAL OUTSOURCING SAL
+                        </span>
+
+                        <span class="experience-date">
+                            MAR 2024 — JUN 2024
+                        </span>
+
+                    </div>
+
+
+                    <div class="experience-content">
+
+                        <h3>
+                            SOC Analyst L1 &amp; NOC Analyst L1 Intern
+                        </h3>
+
+
+                        <span class="experience-location">
+                            Lebanon · 15-week internship
+                        </span>
+
+
+                        <p>
+                            Hands-on SOC and NOC experience covering alert
+                            triage, endpoint security, vulnerability
+                            management, network monitoring and incident
+                            handling across an enterprise environment.
+                        </p>
+
+
+                        <div class="page-tag-row">
+
+                            <span class="page-tag">
+                                SOC
+                            </span>
+
+                            <span class="page-tag">
+                                NOC
+                            </span>
+
+                            <span class="page-tag">
+                                MICROSOFT SENTINEL
+                            </span>
+
+                            <span class="page-tag">
+                                DEFENDER
+                            </span>
+
+                            <span class="page-tag">
+                                KQL
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                </article>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             EDUCATION
+        ========================== -->
+
+        <section class="section">
+
+
+            <div class="section-header split">
+
+
+                <div>
+
+                    <span class="section-number">
+                        09
+                    </span>
+
+                    <span class="section-label">
+                        EDUCATION
+                    </span>
+
+
+                    <h2>
+                        What I've studied.
+                    </h2>
+
+
+                    <p>
+                        Academic education, technical training and
+                        hands-on programmes.
+                    </p>
+
+                </div>
+
+
+                <a href="/education/" class="text-link">
+                    View full education →
+                </a>
+
+
+            </div>
+
+
+
+            <div class="education-list">
+
+
+                <!-- MSC -->
+
+                <article class="education-item featured-education">
+
+
+                    <div class="education-meta">
+
+                        <span class="education-institution">
+                            MIDDLESEX UNIVERSITY DUBAI
+                        </span>
+
+                        <span class="education-date">
+                            SEP 2026 →
+                        </span>
+
+                    </div>
+
+
+                    <div class="education-content">
+
+                        <span class="education-status">
+                            STARTING SEPTEMBER 2026
+                        </span>
+
+
+                        <h3>
+                            MSc Cyber Security and Emerging Threats
+                        </h3>
+
+
+                        <span class="education-location">
+                            Dubai, United Arab Emirates
+                        </span>
+
+
+                        <p>
+                            Postgraduate study aligned with my focus on
+                            offensive security, cybersecurity and emerging
+                            AI-related security challenges.
+                        </p>
+
+
+                        <div class="page-tag-row">
+
+                            <span class="page-tag">
+                                CYBERSECURITY
+                            </span>
+
+                            <span class="page-tag">
+                                OFFENSIVE SECURITY
+                            </span>
+
+                            <span class="page-tag">
+                                AI SECURITY
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                </article>
+
+
+
+                <!-- BACHELOR -->
+
+                <article class="education-item">
+
+
+                    <div class="education-meta">
+
+                        <span class="education-institution">
+                            ARAB OPEN UNIVERSITY
+                        </span>
+
+                        <span class="education-date">
+                            2018 — 2023
+                        </span>
+
+                    </div>
+
+
+                    <div class="education-content">
+
+                        <h3>
+                            BSc Hons in Information Technology and Computing
+                            (Computer Science)
+                        </h3>
+
+
+                        <span class="education-location">
+                            Lebanon · Dual-degree partnership with The Open University
+                        </span>
+
+
+                        <p>
+                            Graduated with a <strong>3.38 GPA</strong>,
+                            with a networking focus and CCNA-related
+                            coursework.
+                        </p>
+
+
+                        <div class="page-tag-row">
+
+                            <span class="page-tag">
+                                COMPUTER SCIENCE
+                            </span>
+
+                            <span class="page-tag">
+                                NETWORKING
+                            </span>
+
+                            <span class="page-tag">
+                                CCNA
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                </article>
+
+
+
+                <!-- TECHNICAL BACCALAUREATE -->
+
+                <article class="education-item">
+
+
+                    <div class="education-meta">
+
+                        <span class="education-institution">
+                            E.T.S.T.C. DEKWANEH
+                        </span>
+
+                        <span class="education-date">
+                            SEP 2015 — JUN 2018
+                        </span>
+
+                    </div>
+
+
+                    <div class="education-content">
+
+                        <h3>
+                            Technical Baccalaureate — Information Technology
+                        </h3>
+
+
+                        <span class="education-location">
+                            Lebanon
+                        </span>
+
+
+                        <p>
+                            Technical IT education covering programming,
+                            networking, systems, hardware, web technologies
+                            and infrastructure.
+                        </p>
+
+
+                        <div class="page-tag-row">
+
+                            <span class="page-tag">
+                                IT
+                            </span>
+
+                            <span class="page-tag">
+                                NETWORKING
+                            </span>
+
+                            <span class="page-tag">
+                                PROGRAMMING
+                            </span>
+
+                            <span class="page-tag">
+                                SYSTEMS
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                </article>
+
+
+
+                <!-- ETHICAL HACKING -->
+
+                <article class="education-item">
+
+
+                    <div class="education-meta">
+
+                        <span class="education-institution">
+                            ARAB OPEN UNIVERSITY
+                        </span>
+
+                        <span class="education-date">
+                            JUN 2021 — SEP 2021
+                        </span>
+
+                    </div>
+
+
+                    <div class="education-content">
+
+                        <h3>
+                            The Art of Ethical Hacking
+                        </h3>
+
+
+                        <span class="education-location">
+                            12-week practical workshop
+                        </span>
+
+
+                        <p>
+                            Hands-on training in ethical hacking and
+                            penetration testing across Windows systems,
+                            web applications and vulnerable lab environments.
+                        </p>
+
+
+                        <div class="page-tag-row">
+
+                            <span class="page-tag">
+                                ETHICAL HACKING
+                            </span>
+
+                            <span class="page-tag">
+                                PENTESTING
+                            </span>
+
+                            <span class="page-tag">
+                                WEB SECURITY
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                </article>
+
+
+
+                <!-- GAME DEVELOPMENT -->
+
+                <article class="education-item">
+
+
+                    <div class="education-meta">
+
+                        <span class="education-institution">
+                            RAFIK HARIRI UNIVERSITY
+                        </span>
+
+                        <span class="education-date">
+                            SEP 2017 — NOV 2017
+                        </span>
+
+                    </div>
+
+
+                    <div class="education-content">
+
+                        <h3>
+                            Computer Games and Programming Skills
+                        </h3>
+
+
+                        <span class="education-location">
+                            8-week workshop
+                        </span>
+
+
+                        <p>
+                            Practical game development and programming
+                            using Unity and C#, with additional programming
+                            fundamentals.
+                        </p>
+
+
+                        <div class="page-tag-row">
+
+                            <span class="page-tag">
+                                UNITY
+                            </span>
+
+                            <span class="page-tag">
+                                C#
+                            </span>
+
+                            <span class="page-tag">
+                                GAME DEVELOPMENT
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                </article>
+
+
+
+                <!-- BREVET -->
+
+                <article class="education-item">
+
+
+                    <div class="education-meta">
+
+                        <span class="education-institution">
+                            DAR AL HADARA ZALKA
+                        </span>
+
+                        <span class="education-date">
+                            SEP 2010 — JUN 2014
+                        </span>
+
+                    </div>
+
+
+                    <div class="education-content">
+
+                        <h3>
+                            Intermediate Certification — Lebanese Brevet
+                        </h3>
+
+
+                        <span class="education-location">
+                            Zalka, Lebanon
+                        </span>
+
+
+                        <p>
+                            Completed the Lebanese Brevet, providing the
+                            academic foundation for subsequent technical
+                            and higher education.
+                        </p>
+
+
+                        <div class="page-tag-row">
+
+                            <span class="page-tag">
+                                LEBANESE BREVET
+                            </span>
+
+                            <span class="page-tag">
+                                GENERAL EDUCATION
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                </article>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             ABOUT
+        ========================== -->
+
+        <section class="section about-section">
+
+
+            <div class="about-grid">
+
+
+                <div>
+
+
+                    <span class="section-number">
+                        10
+                    </span>
+
+
+                    <span class="section-label">
+                        ABOUT
+                    </span>
+
+
+                    <h2>
+
+                        Hi, I'm
+
+                        <span>
+                            Roger Rached
+                        </span>.
+
+                    </h2>
+
+
+                </div>
+
+
+
                 <div class="about-copy">
 
 
                     <p>
-                        I'm Roger Rached, a cybersecurity practitioner
-                        focused on penetration testing, application security,
-                        offensive security, and AI security.
+                        I'm a cybersecurity practitioner focused on
+                        penetration testing, application security,
+                        offensive security and AI security.
                     </p>
 
 
                     <p>
-                        My background spans Computer Science, network support,
-                        and a SOC/NOC L1 internship, and I continue to build
-                        my offensive security skills through Hack The Box,
-                        TryHackMe, CTFs, security research, and hands-on
+                        My background combines Computer Science,
+                        networking, infrastructure support and
+                        hands-on security operations. I continue to
+                        develop my offensive security skills through
+                        labs, CTFs, security research and practical
                         projects.
                     </p>
 
@@ -1488,113 +2015,100 @@
                     <div class="about-highlights">
 
 
-                        <!-- HTB -->
                         <p>
-                            🔐 <strong>Hack The Box</strong> — Completed
-                            30+ machines, developing hands-on skills in
-                            reconnaissance, enumeration, exploitation,
-                            privilege escalation, and Windows/Linux
-                            penetration testing.
+
+                            🔐 <strong>Hack The Box</strong> —
+                            30+ machines covering reconnaissance,
+                            enumeration, exploitation, privilege
+                            escalation and Windows/Linux penetration testing.
+
                         </p>
 
-                        <a
-                            href="https://profile.hackthebox.com/profile/019e60fe-329c-708b-a797-194cb40234dc"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="about-link"
-                        >
+
+                        <a href="https://profile.hackthebox.com/profile/019e60fe-329c-708b-a797-194cb40234dc"
+                            target="_blank" rel="noopener noreferrer" class="about-link">
                             View Hack The Box Profile ↗
                         </a>
 
 
-                        <!-- TRYHACKME -->
                         <p>
-                            🛡️ <strong>TryHackMe</strong> — Completed
-                            150+ rooms, focusing on SOC operations,
-                            defensive security, penetration testing,
-                            networking, and cybersecurity fundamentals.
+
+                            🛡️ <strong>TryHackMe</strong> —
+                            150+ rooms across SOC operations,
+                            defensive security, networking,
+                            penetration testing and fundamentals.
+
                         </p>
 
-                        <a
-                            href="https://tryhackme.com/p/Ozz961"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="about-link"
-                        >
+
+                        <a href="https://tryhackme.com/p/Ozz961" target="_blank" rel="noopener noreferrer"
+                            class="about-link">
                             View TryHackMe Profile ↗
                         </a>
 
 
-                        <!-- PICOCTF -->
                         <p>
-                            🚩 <strong>CTFs</strong> — Participated in
-                            challenges, particularly PicoCTF, covering
-                            web exploitation, cryptography, forensics,
-                            reverse engineering, and binary exploitation.
+
+                            🚩 <strong>CTFs</strong> —
+                            Challenge experience across web exploitation,
+                            cryptography, forensics, reverse engineering
+                            and binary exploitation.
+
                         </p>
 
-                        <a
-                            href="https://play.picoctf.org/users/Ozz961"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="about-link"
-                        >
+
+                        <a href="https://play.picoctf.org/users/Ozz961" target="_blank" rel="noopener noreferrer"
+                            class="about-link">
                             View PicoCTF Profile ↗
                         </a>
 
 
-                        <!-- BLOG -->
                         <p>
+
                             📝 <strong>Technical Writing</strong> —
-                            Published technical write-ups covering security
-                            labs, CTFs, penetration testing, web security,
-                            and cybersecurity learning.
+                            Security writeups, lab notes, CTFs,
+                            penetration testing and research.
+
                         </p>
 
-                        <a
-                            href="https://roger-rached.blogspot.com"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="about-link"
-                        >
+
+                        <a href="https://roger-rached.blogspot.com" target="_blank" rel="noopener noreferrer"
+                            class="about-link">
                             View Blog Archive ↗
                         </a>
+
 
                     </div>
 
 
-                    <!-- SOCIAL LINKS -->
+
                     <div class="about-links">
 
-                        <a
-                            href="https://github.com/Ozz961"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
+
+                        <a href="https://github.com/Ozz961" target="_blank" rel="noopener noreferrer">
                             GitHub ↗
                         </a>
 
-                        <a
-                            href="https://www.linkedin.com/in/roger-rached/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
+
+                        <a href="https://www.linkedin.com/in/roger-rached/" target="_blank" rel="noopener noreferrer">
                             LinkedIn ↗
                         </a>
 
-                        <a
-                            href="https://medium.com"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            Medium ↗
+
+                        <a href="/education/">
+                            Education ↗
                         </a>
 
-                        <a
-                            href="mailto:roger_Rached@outlook.com"
-                        >
+
+                        <a href="/experience/">
+                            Experience ↗
+                        </a>
+
+
+                        <a href="mailto:roger_Rached@outlook.com">
                             Email ↗
                         </a>
+
 
                     </div>
 
@@ -1602,21 +2116,30 @@
                     <p>
                         This site is my personal security portfolio and
                         knowledge base — a place to document what I learn,
-                        what I build, what I break, and what I discover
+                        what I build, what I break and what I discover
                         along the way.
                     </p>
 
+
                 </div>
+
 
             </div>
 
+
         </section>
+
 
     </main>
 
 
-    <!-- FOOTER -->
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
     <footer>
+
 
         <div class="footer-brand">
 
@@ -1630,9 +2153,11 @@
 
         </div>
 
+
         <p>
             Cybersecurity · Pentesting · AppSec · AI Security
         </p>
+
 
         <span>
             © <span id="year"></span> Ozz961
@@ -1640,8 +2165,12 @@
 
     </footer>
 
-
+    <!-- GLOBAL SITE JAVASCRIPT -->
     <script src="script.js"></script>
 
+    <!-- HOMEPAGE PENTESTING TERMINAL -->
+    <script src="pentesting-terminal-animation.js"></script>
+
 </body>
+
 </html>

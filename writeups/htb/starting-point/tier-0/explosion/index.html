@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Hack The Box Starting Point — Tier 0: Foundations | 05 — Explosion | Ozz961
+    </title>
+
+    <meta name="description"
+        content="Ozz961's Hack The Box Starting Point Tier 0 writeup for Explosion — Windows, RDP, service enumeration and remote desktop access.">
+
+    <meta name="theme-color" content="#08070d">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="../../../../../style.css">
+
+</head>
+
+
+<body>
+
+
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+
+
+    <!-- =========================
+         NAVIGATION
+    ========================== -->
+
+    <header class="navbar">
+
+        <a href="/" class="brand">
+
+            <span class="brand-mark">
+                &gt;_
+            </span>
+
+            <span>
+                Ozz961
+            </span>
+
+        </a>
+
+
+        <nav class="nav-links">
+
+            <a href="/writeups/">
+                Writeups
+            </a>
+
+            <a href="/projects/">
+                Projects
+            </a>
+
+            <a href="/tools/">
+                Tools
+            </a>
+
+            <a href="/notes/">
+                Notes
+            </a>
+
+            <a href="/research/">
+                Research
+            </a>
+
+            <a href="/guides/">
+                Guides
+            </a>
+
+            <a href="/certifications/">
+                Certifications
+            </a>
+
+            <a href="/experience/">
+                Experience
+            </a>
+
+            <a href="/education/">
+                Education
+            </a>
+
+            <a href="/about/">
+                About
+            </a>
+
+        </nav>
+
+
+        <a href="https://github.com/Ozz961" target="_blank" rel="noopener noreferrer" class="github-link">
+            GitHub ↗
+        </a>
+
+    </header>
+
+
+
+    <main class="page-shell">
+
+        <div class="page-container">
+
+
+            <!-- =========================
+                 BACK TO TIER
+            ========================== -->
+
+            <a href="/writeups/htb/starting-point/tier-0/" class="writeup-back">
+                <span>←</span>
+                Back to Tier 0
+            </a>
+
+
+
+            <!-- =========================
+                 BREADCRUMBS
+            ========================== -->
+
+            <div class="page-breadcrumb">
+
+                <a href="/">
+                    Ozz961
+                </a>
+
+                <span>/</span>
+
+                <a href="/writeups/">
+                    Writeups
+                </a>
+
+                <span>/</span>
+
+                <a href="/writeups/htb/">
+                    Hack The Box
+                </a>
+
+                <span>/</span>
+
+                <a href="/writeups/htb/starting-point/">
+                    Starting Point
+                </a>
+
+                <span>/</span>
+
+                <a href="/writeups/htb/starting-point/tier-0/">
+                    Tier 0
+                </a>
+
+                <span>/</span>
+
+                <span class="current">
+                    Explosion
+                </span>
+
+            </div>
+
+
+
+            <!-- =========================
+                 HEADER
+            ========================== -->
+
+            <header class="page-header writeup-intro">
+
+                <span class="section-label">
+                    HACK THE BOX · STARTING POINT · TIER 0
+                </span>
+
+
+                <h1 class="page-title">
+                    05 — <span>Explosion.</span>
+                </h1>
+
+
+                <p class="page-description">
+                    Very Easy · Windows · RDP
+                </p>
+
+
+                <div class="page-tag-row">
+
+                    <span class="page-tag">
+                        VERY EASY
+                    </span>
+
+                    <span class="page-tag">
+                        WINDOWS
+                    </span>
+
+                    <span class="page-tag">
+                        RDP
+                    </span>
+
+                    <span class="page-tag">
+                        ENUMERATION
+                    </span>
+
+                    <span class="page-tag">
+                        XRDP / XFREERDP
+                    </span>
+
+                </div>
+
+            </header>
+
+
+
+            <!-- =========================
+                 WRITEUP
+            ========================== -->
+
+            <article class="writeup-article">
+
+
+                <!-- =========================
+                     01 — INITIAL SCAN
+                ========================== -->
+
+                <section class="writeup-section">
+
+                    <span class="writeup-section-label">
+                        01 — ENUMERATION
+                    </span>
+
+
+                    <h2>
+                        Initial service discovery
+                    </h2>
+
+
+                    <p>
+                        I started with a broad Nmap scan to establish the
+                        target's exposed attack surface. The goal was to
+                        identify the Windows services available remotely and
+                        determine which one should receive deeper
+                        investigation.
+                    </p>
+
+
+                    <pre class="code-block"><code>nmap -sC -sV &lt;TARGET_IP&gt;</code></pre>
+
+
+                    <img src="images/image1.png" alt="Nmap scan showing ports 135, 139, 445, 3389 and 5985 open"
+                        class="writeup-image">
+
+
+                    <p class="image-caption">
+                        Initial scan identifying Windows RPC, SMB, RDP and WinRM-related services.
+                    </p>
+
+
+                    <div class="finding-box">
+
+                        <span class="finding-label">
+                            FINDING 01
+                        </span>
+
+
+                        <p>
+                            The host exposed
+                            <strong>135/tcp</strong>,
+                            <strong>139/tcp</strong>,
+                            <strong>445/tcp</strong>,
+                            <strong>3389/tcp</strong> and
+                            <strong>5985/tcp</strong>.
+                        </p>
+
+                    </div>
+
+
+                    <h3 class="writeup-subtitle">
+                        Port 135 — Microsoft RPC
+                    </h3>
+
+
+                    <p>
+                        TCP 135 is associated with the Windows RPC endpoint
+                        mapper. RPC allows Windows services and applications
+                        to expose remote procedures, while the endpoint
+                        mapper helps clients determine which dynamically
+                        allocated ports are associated with available RPC
+                        services.
+                    </p>
+
+
+                    <h3 class="writeup-subtitle">
+                        Port 139 — NetBIOS Session Service
+                    </h3>
+
+
+                    <p>
+                        TCP 139 indicates SMB communication over NetBIOS.
+                        This is commonly associated with older Windows file
+                        and printer-sharing mechanisms. The simultaneous
+                        presence of 139 and 445 suggested that SMB was
+                        available through both legacy and direct TCP
+                        transport.
+                    </p>
+
+
+                    <h3 class="writeup-subtitle">
+                        Port 445 — SMB
+                    </h3>
+
+
+                    <p>
+                        TCP 445 provides direct SMB communication without
+                        relying on NetBIOS. SMB is used for network file and
+                        printer sharing as well as other Windows remote
+                        operations, making it an important service to
+                        enumerate on Windows targets.
+                    </p>
+
+
+                    <h3 class="writeup-subtitle">
+                        Port 3389 — RDP
+                    </h3>
+
+
+                    <p>
+                        TCP 3389 was identified as
+                        <strong>Microsoft Terminal Services</strong>,
+                        indicating that Remote Desktop Protocol was exposed.
+                        This immediately became the primary service of
+                        interest because RDP provides interactive remote
+                        access to a Windows system when valid authentication
+                        succeeds.
+                    </p>
+
+
+                    <h3 class="writeup-subtitle">
+                        Port 5985 — WinRM
+                    </h3>
+
+
+                    <p>
+                        TCP 5985 exposed Microsoft's HTTP-based Windows
+                        Remote Management service. WinRM can provide remote
+                        management functionality, but no WinRM exploitation
+                        was required for this machine.
+                    </p>
+
+
+                    <div class="finding-box">
+
+                        <span class="finding-label">
+                            ATTACK SURFACE
+                        </span>
+
+
+                        <p>
+                            Although several Windows services were exposed,
+                            the presence of RDP on port 3389 provided the
+                            clearest path for obtaining interactive access,
+                            so I moved to RDP-specific enumeration.
+                        </p>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- =========================
+                     02 — RDP FINGERPRINTING
+                ========================== -->
+
+                <section class="writeup-section">
+
+                    <span class="writeup-section-label">
+                        02 — RDP ENUMERATION
+                    </span>
+
+
+                    <h2>
+                        Fingerprinting the RDP service
+                    </h2>
+
+
+                    <p>
+                        I narrowed the scan to port 3389 to collect
+                        RDP-specific information and confirm that the remote
+                        desktop service was reachable.
+                    </p>
+
+
+                    <pre class="code-block"><code>nmap -sV -Pn -p 3389 &lt;TARGET_IP&gt;</code></pre>
+
+
+                    <img src="images/image2.png" alt="Focused Nmap scan of the RDP service on port 3389"
+                        class="writeup-image">
+
+
+                    <p class="image-caption">
+                        Focused enumeration of the RDP service.
+                    </p>
+
+
+                    <div class="finding-box">
+
+                        <span class="finding-label">
+                            FINDING 02
+                        </span>
+
+
+                        <p>
+                            RDP was reachable on
+                            <strong>TCP 3389</strong>.
+                        </p>
+
+                    </div>
+
+
+                    <p>
+                        The deeper service output also exposed useful host
+                        metadata through the RDP negotiation process,
+                        including the machine name, NetBIOS domain name,
+                        product version and certificate information.
+                    </p>
+
+
+                    <h3 class="writeup-subtitle">
+                        Host identity
+                    </h3>
+
+
+                    <p>
+                        The RDP fingerprint identified the target as
+                        <strong>EXPLOSION</strong>. The same name appeared in
+                        the NetBIOS and DNS computer-name fields, providing a
+                        consistent host identity.
+                    </p>
+
+
+                    <h3 class="writeup-subtitle">
+                        Windows version
+                    </h3>
+
+
+                    <p>
+                        The RDP output reported product version
+                        <strong>10.0.17763</strong>, which corresponds to
+                        the Windows Server 2019 / Windows 10 version family
+                        associated with build 17763.
+                    </p>
+
+
+                    <h3 class="writeup-subtitle">
+                        Certificate information
+                    </h3>
+
+
+                    <p>
+                        The service also presented an RDP certificate whose
+                        subject referenced <strong>Explosion</strong>.
+                        Certificate details are useful during enumeration
+                        because they can corroborate host identity and
+                        provide additional context about how the service
+                        is configured.
+                    </p>
+
+
+                </section>
+
+
+
+                <!-- =========================
+                     03 — SECURITY NEGOTIATION
+                ========================== -->
+
+                <section class="writeup-section">
+
+                    <span class="writeup-section-label">
+                        03 — RDP SECURITY
+                    </span>
+
+
+                    <h2>
+                        Enumerating supported security mechanisms
+                    </h2>
+
+
+                    <p>
+                        I then used Nmap's RDP security enumeration script to
+                        determine which security protocols were supported by
+                        the server and to understand how authentication was
+                        negotiated.
+                    </p>
+
+
+                    <pre
+                        class="code-block"><code>nmap -p3389 --script rdp-enum-encryption &lt;TARGET_IP&gt;</code></pre>
+
+
+                    <img src="images/image3.png" alt="RDP encryption and authentication enumeration"
+                        class="writeup-image">
+
+
+                    <p class="image-caption">
+                        Enumerating the RDP security protocols supported by the target.
+                    </p>
+
+
+                    <h3 class="writeup-subtitle">
+                        CredSSP / NLA
+                    </h3>
+
+
+                    <p>
+                        The scan reported:
+                    </p>
+
+
+                    <pre class="code-block"><code>CredSSP (NLA): SUCCESS</code></pre>
+
+
+                    <p>
+                        CredSSP, the Credential Security Support Provider,
+                        is used by RDP to perform authenticated communication
+                        through a TLS-protected channel. Microsoft's protocol
+                        documentation describes CredSSP as combining TLS with
+                        Kerberos or NTLM-based authentication. ([Microsoft CredSSP
+                        documentation](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-rdpbcgr/8e11581d-094f-461a-9fde-ba51af90cf8b))
+                    </p>
+
+
+                    <p>
+                        The successful NLA result indicated that the target
+                        supported authentication before the full interactive
+                        RDP session was established. Microsoft recommends
+                        keeping NLA enabled because authentication takes
+                        place before the remote session is created. ([Microsoft RDP
+                        documentation](https://learn.microsoft.com/en-us/windows-server/remote/remote-desktop-services/remotepc/remote-desktop-allow-access))
+                    </p>
+
+
+                    <h3 class="writeup-subtitle">
+                        CredSSP with Early User Authorization
+                    </h3>
+
+
+                    <p>
+                        The scan also reported:
+                    </p>
+
+
+                    <pre class="code-block"><code>CredSSP with Early User Auth: SUCCESS</code></pre>
+
+
+                    <p>
+                        This corresponds to the extended CredSSP negotiation
+                        that includes the Early User Authorization result.
+                        In practical terms, it confirmed support for a more
+                        modern RDP authentication flow. Microsoft's RDP
+                        protocol defines this as the
+                        <strong>HYBRID_EX</strong> security protocol. ([Microsoft RDP negotiation
+                        documentation](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-rdpbcgr/902b090b-9cb3-4efc-92bf-ee13373371e3))
+                    </p>
+
+
+                    <h3 class="writeup-subtitle">
+                        RDSTLS
+                    </h3>
+
+
+                    <p>
+                        The scan also reported:
+                    </p>
+
+
+                    <pre class="code-block"><code>RDSTLS: SUCCESS</code></pre>
+
+
+                    <p>
+                        RDSTLS is another enhanced RDP security mechanism
+                        that uses TLS to provide server authentication,
+                        encryption and integrity protection for the RDP
+                        transport. ([Microsoft RDSTLS
+                        documentation](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-rdpbcgr/83d1186d-cab6-4ad8-8c5f-203f95e192aa))
+                    </p>
+
+
+                    <div class="finding-box">
+
+                        <span class="finding-label">
+                            SECURITY OBSERVATION
+                        </span>
+
+
+                        <p>
+                            The target supported modern RDP security
+                            mechanisms, including CredSSP/NLA and RDSTLS.
+                            This confirmed that the service was not simply
+                            exposing an old, unauthenticated RDP stack.
+                        </p>
+
+                    </div>
+
+
+                    <div class="resource-box">
+
+                        <div class="resource-header">
+
+                            <span class="resource-label">
+                                RESOURCES
+                            </span>
+
+                        </div>
+
+
+                        <a href="https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-rdpbcgr/592a0337-dc91-4de3-a901-e1829665291d"
+                            target="_blank" rel="noopener noreferrer" class="resource-link">
+
+                            <span class="resource-icon">
+                                ↗
+                            </span>
+
+
+                            <span class="resource-content">
+
+                                <strong>
+                                    Enhanced RDP Security
+                                </strong>
+
+                                <small>
+                                    Microsoft protocol documentation
+                                </small>
+
+                            </span>
+
+                        </a>
+
+
+                        <a href="https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-rdpbcgr/8e11581d-094f-461a-9fde-ba51af90cf8b"
+                            target="_blank" rel="noopener noreferrer" class="resource-link">
+
+                            <span class="resource-icon">
+                                ↗
+                            </span>
+
+
+                            <span class="resource-content">
+
+                                <strong>
+                                    CredSSP
+                                </strong>
+
+                                <small>
+                                    Microsoft protocol documentation
+                                </small>
+
+                            </span>
+
+                        </a>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- =========================
+                     04 — FURTHER RDP ENUMERATION
+                ========================== -->
+
+                <section class="writeup-section">
+
+                    <span class="writeup-section-label">
+                        04 — SERVICE VALIDATION
+                    </span>
+
+
+                    <h2>
+                        Enumerating RDP configuration
+                    </h2>
+
+
+                    <p>
+                        With the service confirmed, I performed additional
+                        protocol-specific checks to understand the supported
+                        security configuration before attempting access.
+                    </p>
+
+
+                    <pre class="code-block"><code>nmap -sV -Pn -p3389 \
+--script rdp-enum-encryption,rdp-ntlm-info \
+&lt;TARGET_IP&gt;</code></pre>
+
+
+                    <p>
+                        The combination of
+                        <strong>rdp-enum-encryption</strong> and
+                        <strong>rdp-ntlm-info</strong> provides additional
+                        visibility into the security negotiation and NTLM
+                        information exposed by the service.
+                    </p>
+
+
+                    <h3 class="writeup-subtitle">
+                        TLS configuration
+                    </h3>
+
+
+                    <p>
+                        I also checked the TLS configuration exposed by the
+                        service:
+                    </p>
+
+
+                    <pre class="code-block"><code>nmap --script ssl-enum-ciphers -p 3389 &lt;TARGET_IP&gt;</code></pre>
+
+
+                    <p>
+                        This type of scan is useful for identifying the
+                        cryptographic protocols and cipher suites offered by
+                        an exposed TLS-enabled service.
+                    </p>
+
+
+                    <h3 class="writeup-subtitle">
+                        Known vulnerability check
+                    </h3>
+
+
+                    <p>
+                        I also considered an RDP-specific vulnerability
+                        check:
+                    </p>
+
+
+                    <pre class="code-block"><code>nmap --script rdp-vuln-ms12-020 -p3389 &lt;TARGET_IP&gt;</code></pre>
+
+
+                    <p>
+                        This checks for the historical MS12-020 RDP
+                        vulnerability. No exploitation of that vulnerability
+                        was required for this machine; the purpose of the
+                        step was to validate whether an older known attack
+                        surface was present before continuing with
+                        authentication testing.
+                    </p>
+
+
+                    <div class="resource-box">
+
+                        <div class="resource-header">
+
+                            <span class="resource-label">
+                                RESOURCE
+                            </span>
+
+                        </div>
+
+
+                        <a href="https://nmap.org/nsedoc/" target="_blank" rel="noopener noreferrer"
+                            class="resource-link">
+
+                            <span class="resource-icon">
+                                ↗
+                            </span>
+
+
+                            <span class="resource-content">
+
+                                <strong>
+                                    Nmap NSE documentation
+                                </strong>
+
+                                <small>
+                                    Official Nmap documentation
+                                </small>
+
+                            </span>
+
+                        </a>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- =========================
+                     05 — ACCESS ATTEMPT
+                ========================== -->
+
+                <section class="writeup-section">
+
+                    <span class="writeup-section-label">
+                        05 — REMOTE ACCESS
+                    </span>
+
+
+                    <h2>
+                        Connecting with xfreerdp
+                    </h2>
+
+
+                    <p>
+                        After establishing that RDP was reachable and
+                        understanding the authentication mechanisms, I
+                        moved to the RDP client to test interactive access.
+                    </p>
+
+
+                    <p>
+                        With FreeRDP, the
+                        <strong>/v:</strong> option specifies the target
+                        server.
+                    </p>
+
+
+                    <pre class="code-block"><code>xfreerdp /v:&lt;TARGET_IP&gt;:3389</code></pre>
+
+
+                    <p>
+                        The first connection attempt returned a
+                        <strong>FreeRDP crypto error</strong>. This did not
+                        indicate that the RDP service itself was unavailable;
+                        it indicated a problem during the client's
+                        certificate/cryptographic handling of the connection.
+                    </p>
+
+
+                    <img src="images/image5.png" alt="First FreeRDP connection attempt showing a crypto error"
+                        class="writeup-image">
+
+
+                    <p class="image-caption">
+                        Initial FreeRDP connection attempt and crypto-related error.
+                    </p>
+
+
+                    <p>
+                        I then retried the connection while explicitly
+                        specifying the username:
+                    </p>
+
+
+                    <pre class="code-block"><code>xfreerdp /v:&lt;TARGET_IP&gt;:3389 /u:administrator</code></pre>
+
+
+                    <p>
+                        The client successfully progressed through the RDP
+                        negotiation and presented the Windows session.
+                    </p>
+
+
+                </section>
+
+
+
+                <!-- =========================
+                     06 — SUCCESS
+                ========================== -->
+
+                <section class="writeup-section">
+
+                    <span class="writeup-section-label">
+                        06 — ACCESS CONFIRMED
+                    </span>
+
+
+                    <h2>
+                        Successful RDP session
+                    </h2>
+
+
+                    <img src="images/image6.png" alt="Successful RDP connection to the Explosion Windows machine"
+                        class="writeup-image">
+
+
+                    <p class="image-caption">
+                        Successful remote desktop connection to the target.
+                    </p>
+
+
+                    <div class="finding-box">
+
+                        <span class="finding-label">
+                            FINDING 04
+                        </span>
+
+
+                        <p>
+                            Interactive Windows access was successfully
+                            established through RDP using the
+                            <strong>administrator</strong> account.
+                        </p>
+
+                    </div>
+
+
+                    <p>
+                        At this point the target was accessible through a
+                        normal Windows desktop session. The successful
+                        connection confirmed that the exposed RDP service,
+                        authentication path and account configuration were
+                        sufficient to obtain interactive access.
+                    </p>
+
+
+                    <p>
+                        The machine therefore demonstrates an important
+                        distinction between <em>secure protocol support</em>
+                        and <em>secure account configuration</em>. The RDP
+                        service can support modern security mechanisms while
+                        still being compromised by weak or improper
+                        authentication configuration.
+                    </p>
+
+
+                </section>
+
+
+
+                <!-- =========================
+                     07 — XFREERDP DETAILS
+                ========================== -->
+
+                <section class="writeup-section">
+
+                    <span class="writeup-section-label">
+                        07 — CLIENT REFERENCE
+                    </span>
+
+
+                    <h2>
+                        xfreerdp essentials
+                    </h2>
+
+
+                    <p>
+                        The FreeRDP client exposes several options that are
+                        useful when interacting with RDP during authorized
+                        testing.
+                    </p>
+
+
+                    <pre class="code-block"><code>xfreerdp /v:&lt;TARGET_IP&gt;
+xfreerdp /v:&lt;TARGET_IP&gt;:3389 /u:administrator</code></pre>
+
+
+                    <div class="finding-box">
+
+                        <span class="finding-label">
+                            KEY OPTION
+                        </span>
+
+
+                        <p>
+                            <strong>/v:</strong> specifies the destination
+                            server or IP address.
+                        </p>
+
+                    </div>
+
+
+                    <div class="resource-box">
+
+                        <div class="resource-header">
+
+                            <span class="resource-label">
+                                FURTHER READING
+                            </span>
+
+                        </div>
+
+
+                        <a href="https://www.freerdp.com/" target="_blank" rel="noopener noreferrer"
+                            class="resource-link">
+
+                            <span class="resource-icon">
+                                ↗
+                            </span>
+
+
+                            <span class="resource-content">
+
+                                <strong>
+                                    FreeRDP
+                                </strong>
+
+                                <small>
+                                    Official FreeRDP project
+                                </small>
+
+                            </span>
+
+                        </a>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- =========================
+                     08 — BRUTE FORCE CONTEXT
+                ========================== -->
+
+                <section class="writeup-section">
+
+                    <span class="writeup-section-label">
+                        08 — AUTHENTICATION TESTING
+                    </span>
+
+
+                    <h2>
+                        Credential testing considerations
+                    </h2>
+
+
+                    <p>
+                        RDP services are commonly tested for weak credentials
+                        during authorized penetration tests. Hydra supports
+                        RDP authentication testing, for example:
+                    </p>
+
+
+                    <pre
+                        class="code-block"><code>hydra -t 1 -V -f -l administrator -P passwords.txt rdp://&lt;TARGET&gt;</code></pre>
+
+
+                    <p>
+                        In this machine, however, a large password attack was
+                        not necessary to establish access. The practical
+                        lesson was that authentication configuration can be
+                        more important than the presence of modern protocol
+                        security features.
+                    </p>
+
+
+                    <div class="finding-box">
+
+                        <span class="finding-label">
+                            ASSESSMENT NOTE
+                        </span>
+
+
+                        <p>
+                            Credential attacks should only be performed
+                            within authorized scope and with an appropriate
+                            rate limit to avoid account lockouts or service
+                            disruption.
+                        </p>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- =========================
+                     09 — WHAT I LEARNED
+                ========================== -->
+
+                <section class="writeup-section">
+
+                    <span class="writeup-section-label">
+                        09 — WHAT I LEARNED
+                    </span>
+
+
+                    <h2>
+                        Lessons from Explosion
+                    </h2>
+
+
+                    <p>
+                        Explosion reinforced the importance of moving from
+                        broad enumeration to protocol-specific analysis.
+                        The initial scan exposed several Windows services,
+                        but RDP quickly became the primary focus because it
+                        provided a direct path to interactive access.
+                    </p>
+
+
+                    <p>
+                        The RDP security enumeration also demonstrated why
+                        service fingerprinting should go beyond simply
+                        identifying an open port. CredSSP, NLA, RDSTLS,
+                        certificate information and NTLM metadata provided
+                        a much clearer picture of how the remote desktop
+                        service was configured.
+                    </p>
+
+
+                    <p>
+                        Most importantly, the machine showed that strong
+                        protocol support does not automatically mean that
+                        the overall system is securely configured. The
+                        authentication and account configuration ultimately
+                        determined whether the exposed RDP service could
+                        provide access.
+                    </p>
+
+
+                    <div class="page-tag-row">
+
+                        <span class="page-tag">
+                            NMAP
+                        </span>
+
+                        <span class="page-tag">
+                            RDP
+                        </span>
+
+                        <span class="page-tag">
+                            XFREERDP
+                        </span>
+
+                        <span class="page-tag">
+                            CREDSSP
+                        </span>
+
+                        <span class="page-tag">
+                            NLA
+                        </span>
+
+                        <span class="page-tag">
+                            RDSTLS
+                        </span>
+
+                        <span class="page-tag">
+                            WINDOWS
+                        </span>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- =========================
+                     10 — TOOLS
+                ========================== -->
+
+                <section class="writeup-section">
+
+                    <span class="writeup-section-label">
+                        10 — TOOLS &amp; TECHNIQUES
+                    </span>
+
+
+                    <h2>
+                        Tools used
+                    </h2>
+
+
+                    <ul>
+
+                        <li>
+                            <strong>Nmap</strong> — host and service
+                            enumeration.
+                        </li>
+
+                        <li>
+                            <strong>RDP NSE scripts</strong> — security
+                            protocol and host fingerprinting.
+                        </li>
+
+                        <li>
+                            <strong>xfreerdp</strong> — interactive RDP
+                            access.
+                        </li>
+
+                        <li>
+                            <strong>Hydra</strong> — credential testing
+                            methodology for authorized RDP assessments.
+                        </li>
+
+                    </ul>
+
+                </section>
+
+
+
+                <!-- =========================
+                     NAVIGATION
+                ========================== -->
+
+                <div class="writeup-navigation">
+
+
+                    <a href="/writeups/htb/starting-point/tier-0/redeemer/">
+
+                        <span>
+                            PREVIOUS
+                        </span>
+
+                        <strong>
+                            ← Redeemer
+                        </strong>
+
+                    </a>
+
+
+                    <a href="/writeups/htb/starting-point/tier-0/preignition/">
+
+                        <span>
+                            NEXT MACHINE
+                        </span>
+
+                        <strong>
+                            Preignition →
+                        </strong>
+
+                    </a>
+
+
+                </div>
+
+
+            </article>
+
+
+        </div>
+
+    </main>
+
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <div class="footer-brand">
+
+            <span class="brand-mark">
+                &gt;_
+            </span>
+
+            <strong>
+                Ozz961
+            </strong>
+
+        </div>
+
+
+        <p>
+            Cybersecurity · Pentesting · AppSec · AI Security
+        </p>
+
+
+        <span>
+            © <span id="year"></span> Ozz961
+        </span>
+
+    </footer>
+
+
+    <script src="../../../../../script.js"></script>
+
+</body>
+
+</html>
