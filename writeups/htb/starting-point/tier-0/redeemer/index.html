@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Hack The Box Starting Point — Tier 0: Foundations | 04 — Redeemer | Ozz961
+    </title>
+
+    <meta name="description"
+        content="Ozz961's Hack The Box Starting Point Tier 0 writeup for Redeemer — Linux, Redis, enumeration and unauthenticated database access.">
+
+    <meta name="theme-color" content="#08070d">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="../../../../../style.css">
+
+</head>
+
+
+<body>
+
+
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+
+
+    <!-- =========================
+         NAVIGATION
+    ========================== -->
+
+    <header class="navbar">
+
+        <a href="/" class="brand">
+
+            <span class="brand-mark">
+                &gt;_
+            </span>
+
+            <span>
+                Ozz961
+            </span>
+
+        </a>
+
+
+        <nav class="nav-links">
+
+            <a href="/writeups/">
+                Writeups
+            </a>
+
+            <a href="/projects/">
+                Projects
+            </a>
+
+            <a href="/tools/">
+                Tools
+            </a>
+
+            <a href="/notes/">
+                Notes
+            </a>
+
+            <a href="/research/">
+                Research
+            </a>
+
+            <a href="/guides/">
+                Guides
+            </a>
+
+            <a href="/certifications/">
+                Certifications
+            </a>
+
+            <a href="/experience/">
+                Experience
+            </a>
+
+            <a href="/education/">
+                Education
+            </a>
+
+            <a href="/about/">
+                About
+            </a>
+
+        </nav>
+
+
+        <a href="https://github.com/Ozz961" target="_blank" rel="noopener noreferrer" class="github-link">
+            GitHub ↗
+        </a>
+
+    </header>
+
+
+
+    <main class="page-shell">
+
+        <div class="page-container">
+
+
+            <!-- =========================
+                 BACK TO TIER
+            ========================== -->
+
+            <a href="/writeups/htb/starting-point/tier-0/" class="writeup-back">
+                <span>←</span>
+                Back to Tier 0
+            </a>
+
+
+
+            <!-- =========================
+                 BREADCRUMBS
+            ========================== -->
+
+            <div class="page-breadcrumb">
+
+                <a href="/">
+                    Ozz961
+                </a>
+
+                <span>/</span>
+
+                <a href="/writeups/">
+                    Writeups
+                </a>
+
+                <span>/</span>
+
+                <a href="/writeups/htb/">
+                    Hack The Box
+                </a>
+
+                <span>/</span>
+
+                <a href="/writeups/htb/starting-point/">
+                    Starting Point
+                </a>
+
+                <span>/</span>
+
+                <a href="/writeups/htb/starting-point/tier-0/">
+                    Tier 0
+                </a>
+
+                <span>/</span>
+
+                <span class="current">
+                    Redeemer
+                </span>
+
+            </div>
+
+
+
+            <!-- =========================
+                 WRITEUP HEADER
+            ========================== -->
+
+            <header class="page-header writeup-intro">
+
+                <span class="section-label">
+                    HACK THE BOX · STARTING POINT · TIER 0
+                </span>
+
+
+                <h1 class="page-title">
+                    04 — <span>Redeemer.</span>
+                </h1>
+
+
+                <p class="page-description">
+                    Very Easy · Linux · Redis
+                </p>
+
+
+                <div class="page-tag-row">
+
+                    <span class="page-tag">
+                        VERY EASY
+                    </span>
+
+                    <span class="page-tag">
+                        LINUX
+                    </span>
+
+                    <span class="page-tag">
+                        REDIS
+                    </span>
+
+                    <span class="page-tag">
+                        DATABASE
+                    </span>
+
+                    <span class="page-tag">
+                        ENUMERATION
+                    </span>
+
+                    <span class="page-tag">
+                        UNAUTHENTICATED ACCESS
+                    </span>
+
+                </div>
+
+            </header>
+
+
+
+            <!-- =========================
+                 WRITEUP
+            ========================== -->
+
+            <article class="writeup-article">
+
+
+                <!-- =========================
+                     01 — ENUMERATION
+                ========================== -->
+
+                <section class="writeup-section">
+
+                    <span class="writeup-section-label">
+                        01 — ENUMERATION
+                    </span>
+
+
+                    <h2>
+                        Identifying the Redis service
+                    </h2>
+
+
+                    <p>
+                        I began with a targeted Nmap scan to determine
+                        whether Redis was exposed and to fingerprint the
+                        service version running on the target.
+                    </p>
+
+
+                    <pre class="code-block"><code>nmap -p 6379 -sC -sV &lt;TARGET_IP&gt;</code></pre>
+
+
+                    <img src="images/image1.png" alt="Nmap scan showing Redis on port 6379" class="writeup-image">
+
+
+                    <p class="image-caption">
+                        Nmap identifying Redis on TCP port 6379.
+                    </p>
+
+
+                    <div class="finding-box">
+
+                        <span class="finding-label">
+                            FINDING 01
+                        </span>
+
+
+                        <p>
+                            TCP port <strong>6379</strong> was open and
+                            identified as
+                            <strong>Redis 5.0.7</strong>.
+                        </p>
+
+                    </div>
+
+
+                    <p>
+                        Port 6379 is the default TCP port commonly used by
+                        Redis. Seeing a Redis service exposed remotely made
+                        authentication and access controls the immediate
+                        areas of interest.
+                    </p>
+
+
+                    <p>
+                        Redis is an in-memory data structure store that can
+                        operate as a database, cache and message broker.
+                        Its in-memory design provides fast data access, but
+                        an unnecessarily exposed instance can also make
+                        database contents and administrative functionality
+                        directly accessible.
+                    </p>
+
+
+                    <div class="resource-box">
+
+                        <div class="resource-header">
+
+                            <span class="resource-label">
+                                RESOURCE
+                            </span>
+
+                        </div>
+
+
+                        <a href="https://redis.io/docs/latest/operate/rs/references/redis-cli/" target="_blank"
+                            rel="noopener noreferrer" class="resource-link">
+
+                            <span class="resource-icon">
+                                ↗
+                            </span>
+
+
+                            <span class="resource-content">
+
+                                <strong>
+                                    Redis CLI documentation
+                                </strong>
+
+                                <small>
+                                    Official Redis documentation
+                                </small>
+
+                            </span>
+
+                        </a>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- =========================
+                     02 — SERVICE ANALYSIS
+                ========================== -->
+
+                <section class="writeup-section">
+
+                    <span class="writeup-section-label">
+                        02 — SERVICE ANALYSIS
+                    </span>
+
+
+                    <h2>
+                        Understanding Redis
+                    </h2>
+
+
+                    <p>
+                        Before interacting with the database, I established
+                        the basic properties of the service relevant to the
+                        assessment.
+                    </p>
+
+
+                    <div class="finding-box">
+
+                        <span class="finding-label">
+                            DATABASE TYPE
+                        </span>
+
+
+                        <p>
+                            Redis is an
+                            <strong>in-memory database</strong>.
+                        </p>
+
+                    </div>
+
+
+                    <h3 class="writeup-subtitle">
+                        Redis command-line client
+                    </h3>
+
+
+                    <p>
+                        The standard command-line utility used to interact
+                        with a Redis server is <strong>redis-cli</strong>.
+                        When connecting to a remote instance, the
+                        <strong>-h</strong> option specifies the target
+                        hostname or IP address.
+                    </p>
+
+
+                    <pre class="code-block"><code>redis-cli -h &lt;TARGET_IP&gt;</code></pre>
+
+
+                    <div class="resource-box">
+
+                        <div class="resource-header">
+
+                            <span class="resource-label">
+                                RESOURCE
+                            </span>
+
+                        </div>
+
+
+                        <a href="https://redis.io/docs/latest/operate/rs/references/redis-cli/" target="_blank"
+                            rel="noopener noreferrer" class="resource-link">
+
+                            <span class="resource-icon">
+                                ↗
+                            </span>
+
+
+                            <span class="resource-content">
+
+                                <strong>
+                                    redis-cli reference
+                                </strong>
+
+                                <small>
+                                    Official Redis documentation
+                                </small>
+
+                            </span>
+
+                        </a>
+
+                    </div>
+
+
+                </section>
+
+
+
+                <!-- =========================
+                     03 — ACCESS
+                ========================== -->
+
+                <section class="writeup-section">
+
+                    <span class="writeup-section-label">
+                        03 — ACCESS
+                    </span>
+
+
+                    <h2>
+                        Connecting to Redis
+                    </h2>
+
+
+                    <p>
+                        With Redis confirmed on port 6379, I connected
+                        directly using the Redis command-line client. The
+                        immediate objective was to determine whether the
+                        instance required authentication before allowing
+                        database interaction.
+                    </p>
+
+
+                    <pre class="code-block"><code>redis-cli -h &lt;TARGET_IP&gt;</code></pre>
+
+
+                    <img src="images/image2.png" alt="Redis CLI connection to the target" class="writeup-image">
+
+
+                    <p class="image-caption">
+                        Establishing an interactive Redis session with redis-cli.
+                    </p>
+
+
+                    <div class="finding-box">
+
+                        <span class="finding-label">
+                            FINDING 02
+                        </span>
+
+
+                        <p>
+                            The Redis instance accepted the connection
+                            without requiring authentication.
+                        </p>
+
+                    </div>
+
+
+                    <p>
+                        This was the key configuration weakness. Remote
+                        access to the database interface was available
+                        without credentials, allowing direct interaction
+                        with the Redis datastore and its exposed commands.
+                    </p>
+
+
+                </section>
+
+
+
+                <!-- =========================
+                     04 — SERVER INFO
+                ========================== -->
+
+                <section class="writeup-section">
+
+                    <span class="writeup-section-label">
+                        04 — SERVER ENUMERATION
+                    </span>
+
+
+                    <h2>
+                        Inspecting server information
+                    </h2>
+
+
+                    <p>
+                        Once connected, I used the Redis
+                        <strong>INFO</strong> command to gather server
+                        statistics and environment information. This is
+                        useful because a database service can disclose
+                        details about its version, platform and runtime
+                        state even before application data is inspected.
+                    </p>
+
+
+                    <pre class="code-block"><code>INFO</code></pre>
+
+
+                    <p>
+                        Redis' official documentation describes
+                        <strong>INFO</strong> as the command used to return
+                        information and statistics about the server. It can
+                        expose sections covering the server, clients,
+                        memory, persistence, replication and keyspace.
+                        :contentReference[oaicite:0]{index=0}
+                    </p>
+
+
+                    <div class="finding-box">
+
+                        <span class="finding-label">
+                            FINDING 03
+                        </span>
+
+
+                        <p>
+                            The server reported:
+                        </p>
+
+
+                        <p>
+                            <strong>
+                                Linux 5.4.0-77-generic x86_64
+                            </strong>
+                        </p>
+
+
+                        <p>
+                            <strong>
+                                redis_version:5.0.7
+                            </strong>
+                        </p>
+
+                    </div>
+
+
+                    <p>
+                        This confirmed the Linux platform and matched the
+                        Redis version identified during the initial service
+                        scan.
+                    </p>
+
+
+                    <div class="resource-box">
+
+                        <div class="resource-header">
+
+                            <span class="resource-label">
+                                RESOURCE
+                            </span>
+
+                        </div>
+
+
+                        <a href="https://redis.io/docs/latest/commands/info/" target="_blank" rel="noopener noreferrer"
+                            class="resource-link">
+
+                            <span class="resource-icon">
+                                ↗
+                            </span>
+
+
+                            <span class="resource-content">
+
+                                <strong>
+                                    Redis INFO
+                                </strong>
+
+                                <small>
+                                    Official Redis command reference
+                                </small>
+
+                            </span>
+
+                        </a>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- =========================
+                     05 — KEY ENUMERATION
+                ========================== -->
+
+                <section class="writeup-section">
+
+                    <span class="writeup-section-label">
+                        05 — DATA ENUMERATION
+                    </span>
+
+
+                    <h2>
+                        Enumerating Redis keys
+                    </h2>
+
+
+                    <p>
+                        With unauthenticated database access established,
+                        I moved from server-level enumeration to the
+                        datastore itself. Redis organizes stored data
+                        around keys, so enumerating the available keyspace
+                        was the next logical step.
+                    </p>
+
+
+                    <pre class="code-block"><code>KEYS *</code></pre>
+
+
+                    <p>
+                        The command returned the keys stored in the current
+                        database. Among the results was a key named
+                        <strong>flag</strong>, giving me a direct target
+                        for retrieving the stored value.
+                    </p>
+
+
+                    <img src="images/image3.png"
+                        alt="Redis key enumeration showing the flag key and retrieving its value" class="writeup-image">
+
+
+                    <p class="image-caption">
+                        Enumerating the Redis keyspace and retrieving the flag value.
+                    </p>
+
+
+                    <h3 class="writeup-subtitle">
+                        Retrieving the flag
+                    </h3>
+
+
+                    <p>
+                        I then queried the discovered key using
+                        <strong>GET</strong>. The command returns the string
+                        value associated with a key.
+                    </p>
+
+
+                    <pre class="code-block"><code>GET flag</code></pre>
+
+
+                    <p>
+                        The command returned the flag, completing the
+                        intended attack path.
+                    </p>
+
+
+                    <div class="resource-box">
+
+                        <div class="resource-header">
+
+                            <span class="resource-label">
+                                RESOURCE
+                            </span>
+
+                        </div>
+
+
+                        <a href="https://redis.io/docs/latest/commands/get/" target="_blank" rel="noopener noreferrer"
+                            class="resource-link">
+
+                            <span class="resource-icon">
+                                ↗
+                            </span>
+
+
+                            <span class="resource-content">
+
+                                <strong>
+                                    Redis GET command
+                                </strong>
+
+                                <small>
+                                    Official Redis command reference
+                                </small>
+
+                            </span>
+
+                        </a>
+
+                    </div>
+
+
+                </section>
+
+
+
+                <!-- =========================
+                     06 — FURTHER ENUMERATION
+                ========================== -->
+
+                <section class="writeup-section">
+
+                    <span class="writeup-section-label">
+                        06 — REDIS PENTESTING
+                    </span>
+
+
+                    <h2>
+                        Additional enumeration techniques
+                    </h2>
+
+
+                    <p>
+                        Redeemer only required basic Redis access and
+                        key/value enumeration. During a broader authorized
+                        assessment, however, additional Redis functionality
+                        can reveal useful information about the service and
+                        its data.
+                    </p>
+
+
+                    <h3 class="writeup-subtitle">
+                        Enumerating keys
+                    </h3>
+
+
+                    <pre class="code-block"><code>KEYS *</code></pre>
+
+
+                    <p>
+                        <strong>KEYS *</strong> is useful in a small lab such
+                        as this machine because it provides a quick view of
+                        the current keyspace. On larger or production
+                        datasets, Redis provides cursor-based
+                        <strong>SCAN</strong> commands that are better suited
+                        to incremental keyspace iteration.
+                    </p>
+
+
+                    <pre class="code-block"><code>SCAN 0</code></pre>
+
+
+                    <h3 class="writeup-subtitle">
+                        Monitoring activity
+                    </h3>
+
+
+                    <pre class="code-block"><code>MONITOR</code></pre>
+
+
+                    <p>
+                        The Redis <strong>MONITOR</strong> command streams
+                        commands received by the server in real time. In an
+                        authorized assessment, this can help identify how an
+                        application interacts with the datastore and expose
+                        sensitive operations or unexpected behavior.
+                    </p>
+
+
+                    <div class="resource-box">
+
+                        <div class="resource-header">
+
+                            <span class="resource-label">
+                                RESOURCE
+                            </span>
+
+                        </div>
+
+
+                        <a href="https://redis.io/docs/latest/develop/tools/cli/" target="_blank"
+                            rel="noopener noreferrer" class="resource-link">
+
+                            <span class="resource-icon">
+                                ↗
+                            </span>
+
+
+                            <span class="resource-content">
+
+                                <strong>
+                                    Redis CLI guide
+                                </strong>
+
+                                <small>
+                                    Official Redis documentation
+                                </small>
+
+                            </span>
+
+                        </a>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- =========================
+                     07 — ATTACK SURFACE
+                ========================== -->
+
+                <section class="writeup-section">
+
+                    <span class="writeup-section-label">
+                        07 — FURTHER ATTACK SURFACE
+                    </span>
+
+
+                    <h2>
+                        Configuration-based attack paths
+                    </h2>
+
+
+                    <p>
+                        A Redis deployment can expose a much larger attack
+                        surface when administrative commands are available,
+                        the service runs with excessive privileges, or its
+                        network exposure is poorly controlled.
+                    </p>
+
+
+                    <p>
+                        Historical Redis attack paths have included abuse of
+                        configuration functionality to write files to
+                        sensitive locations, manipulate SSH authorization
+                        files, alter scheduled tasks, or load native modules.
+                        Whether any of these techniques are viable depends
+                        on the specific Redis version, operating-system
+                        configuration, process privileges and enabled
+                        functionality.
+                    </p>
+
+
+                    <div class="finding-box">
+
+                        <span class="finding-label">
+                            IMPORTANT
+                        </span>
+
+
+                        <p>
+                            These techniques were not required to solve
+                            Redeemer. The actual path was:
+                            unauthenticated Redis access → server
+                            enumeration → key enumeration → flag retrieval.
+                        </p>
+
+                    </div>
+
+
+                    <p>
+                        This distinction matters in a professional
+                        assessment: a possible exploitation technique should
+                        not be presented as a confirmed vulnerability unless
+                        the target configuration has actually been shown to
+                        support it.
+                    </p>
+
+
+                </section>
+
+
+
+                <!-- =========================
+                     08 — HARDENING
+                ========================== -->
+
+                <section class="writeup-section">
+
+                    <span class="writeup-section-label">
+                        08 — DEFENSIVE NOTES
+                    </span>
+
+
+                    <h2>
+                        Securing an exposed Redis instance
+                    </h2>
+
+
+                    <p>
+                        The same configuration issues identified during an
+                        assessment can be translated directly into defensive
+                        controls. A Redis service should only be reachable
+                        from systems that genuinely require access, and
+                        authentication and authorization should be configured
+                        according to the deployment's security requirements.
+                    </p>
+
+
+                    <ul>
+
+                        <li>
+                            Restrict Redis network exposure to trusted
+                            interfaces and hosts.
+                        </li>
+
+                        <li>
+                            Require authentication and use appropriately
+                            scoped access controls.
+                        </li>
+
+                        <li>
+                            Run Redis with the minimum operating-system
+                            privileges required by the service.
+                        </li>
+
+                        <li>
+                            Avoid exposing administrative functionality to
+                            untrusted clients.
+                        </li>
+
+                        <li>
+                            Keep the Redis deployment and underlying host
+                            software updated and monitored.
+                        </li>
+
+                    </ul>
+
+
+                    <div class="resource-box">
+
+                        <div class="resource-header">
+
+                            <span class="resource-label">
+                                FURTHER READING
+                            </span>
+
+                        </div>
+
+
+                        <a href="https://redis.io/docs/latest/operate/oss_and_stack/management/security/"
+                            target="_blank" rel="noopener noreferrer" class="resource-link">
+
+                            <span class="resource-icon">
+                                ↗
+                            </span>
+
+
+                            <span class="resource-content">
+
+                                <strong>
+                                    Redis security
+                                </strong>
+
+                                <small>
+                                    Official Redis security documentation
+                                </small>
+
+                            </span>
+
+                        </a>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- =========================
+                     09 — WHAT I LEARNED
+                ========================== -->
+
+                <section class="writeup-section">
+
+                    <span class="writeup-section-label">
+                        09 — WHAT I LEARNED
+                    </span>
+
+
+                    <h2>
+                        Lessons from Redeemer
+                    </h2>
+
+
+                    <p>
+                        Redeemer reinforced the importance of identifying
+                        the technology behind an exposed port before deciding
+                        what to test next. Once port 6379 revealed Redis, the
+                        assessment became a database-specific investigation
+                        rather than a generic service scan.
+                    </p>
+
+
+                    <p>
+                        The critical weakness was the combination of a
+                        remotely accessible Redis instance and the absence
+                        of authentication. That allowed direct interaction
+                        with the database, server information disclosure,
+                        key enumeration and ultimately retrieval of the flag.
+                    </p>
+
+
+                    <p>
+                        The machine also demonstrated how effective
+                        enumeration can be without relying on a complex
+                        exploit. Understanding the service, identifying the
+                        access control failure and following the exposed data
+                        path were enough to complete the assessment.
+                    </p>
+
+
+                    <div class="page-tag-row">
+
+                        <span class="page-tag">
+                            NMAP
+                        </span>
+
+                        <span class="page-tag">
+                            REDIS
+                        </span>
+
+                        <span class="page-tag">
+                            REDIS-CLI
+                        </span>
+
+                        <span class="page-tag">
+                            INFO
+                        </span>
+
+                        <span class="page-tag">
+                            KEY ENUMERATION
+                        </span>
+
+                        <span class="page-tag">
+                            UNAUTHENTICATED ACCESS
+                        </span>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- =========================
+                     10 — TOOLS
+                ========================== -->
+
+                <section class="writeup-section">
+
+                    <span class="writeup-section-label">
+                        10 — TOOLS &amp; TECHNIQUES
+                    </span>
+
+
+                    <h2>
+                        Tools used
+                    </h2>
+
+
+                    <ul>
+
+                        <li>
+                            <strong>Nmap</strong> — port and service
+                            enumeration.
+                        </li>
+
+                        <li>
+                            <strong>redis-cli</strong> — interactive
+                            communication with the Redis server.
+                        </li>
+
+                        <li>
+                            <strong>INFO</strong> — server and environment
+                            enumeration.
+                        </li>
+
+                        <li>
+                            <strong>KEYS / SCAN</strong> — Redis keyspace
+                            enumeration.
+                        </li>
+
+                        <li>
+                            <strong>GET</strong> — retrieving stored string
+                            values.
+                        </li>
+
+                    </ul>
+
+                </section>
+
+
+
+                <!-- =========================
+                     NAVIGATION
+                ========================== -->
+
+                <div class="writeup-navigation">
+
+
+                    <a href="/writeups/htb/starting-point/tier-0/dancing/">
+
+                        <span>
+                            PREVIOUS
+                        </span>
+
+                        <strong>
+                            ← Dancing
+                        </strong>
+
+                    </a>
+
+
+                    <a href="/writeups/htb/starting-point/tier-0/explosion/">
+
+                        <span>
+                            NEXT MACHINE
+                        </span>
+
+                        <strong>
+                            Explosion →
+                        </strong>
+
+                    </a>
+
+
+                </div>
+
+
+            </article>
+
+
+        </div>
+
+    </main>
+
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <div class="footer-brand">
+
+            <span class="brand-mark">
+                &gt;_
+            </span>
+
+            <strong>
+                Ozz961
+            </strong>
+
+        </div>
+
+
+        <p>
+            Cybersecurity · Pentesting · AppSec · AI Security
+        </p>
+
+
+        <span>
+            © <span id="year"></span> Ozz961
+        </span>
+
+    </footer>
+
+
+    <script src="../../../../../script.js"></script>
+
+</body>
+
+</html>

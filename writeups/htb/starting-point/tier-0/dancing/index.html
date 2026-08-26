@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Hack The Box Starting Point — Tier 0: Foundations | 03 — Dancing | Ozz961
+    </title>
+
+    <meta name="description"
+        content="Ozz961's Hack The Box Starting Point Tier 0 writeup for Dancing — Windows, SMB, anonymous access and share enumeration.">
+
+    <meta name="theme-color" content="#08070d">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="../../../../../style.css">
+
+</head>
+
+
+<body>
+
+
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+
+
+    <!-- NAVIGATION -->
+
+    <header class="navbar">
+
+        <a href="/" class="brand">
+
+            <span class="brand-mark">
+                &gt;_
+            </span>
+
+            <span>
+                Ozz961
+            </span>
+
+        </a>
+
+
+        <nav class="nav-links">
+
+            <a href="/writeups/">
+                Writeups
+            </a>
+
+            <a href="/projects/">
+                Projects
+            </a>
+
+            <a href="/tools/">
+                Tools
+            </a>
+
+            <a href="/notes/">
+                Notes
+            </a>
+
+            <a href="/research/">
+                Research
+            </a>
+
+            <a href="/guides/">
+                Guides
+            </a>
+
+            <a href="/certifications/">
+                Certifications
+            </a>
+
+            <a href="/experience/">
+                Experience
+            </a>
+
+            <a href="/education/">
+                Education
+            </a>
+
+            <a href="/about/">
+                About
+            </a>
+
+        </nav>
+
+
+        <a href="https://github.com/Ozz961" target="_blank" rel="noopener noreferrer" class="github-link">
+            GitHub ↗
+        </a>
+
+    </header>
+
+
+
+    <main class="page-shell">
+
+        <div class="page-container">
+
+
+            <!-- BREADCRUMBS -->
+
+            <div class="page-breadcrumb">
+
+                <a href="/">
+                    Ozz961
+                </a>
+
+                <span>/</span>
+
+                <a href="/writeups/">
+                    Writeups
+                </a>
+
+                <span>/</span>
+
+                <a href="/writeups/htb/">
+                    Hack The Box
+                </a>
+
+                <span>/</span>
+
+                <a href="/writeups/htb/starting-point/">
+                    Starting Point
+                </a>
+
+                <span>/</span>
+
+                <a href="/writeups/htb/starting-point/tier-0/">
+                    Tier 0
+                </a>
+
+                <span>/</span>
+
+                <span class="current">
+                    Dancing
+                </span>
+
+            </div>
+
+            <!-- HEADER -->
+
+            <header class="page-header writeup-intro">
+
+                <span class="section-label">
+                    HACK THE BOX · STARTING POINT · TIER 0
+                </span>
+
+
+                <h1 class="page-title">
+                    03 — <span>Dancing.</span>
+                </h1>
+
+
+                <p class="page-description">
+                    Very Easy · Windows · SMB
+                </p>
+
+
+                <div class="page-tag-row">
+
+                    <span class="page-tag">
+                        VERY EASY
+                    </span>
+
+                    <span class="page-tag">
+                        WINDOWS
+                    </span>
+
+                    <span class="page-tag">
+                        SMB
+                    </span>
+
+                    <span class="page-tag">
+                        ENUMERATION
+                    </span>
+
+                    <span class="page-tag">
+                        ANONYMOUS ACCESS
+                    </span>
+
+                </div>
+
+            </header>
+
+            <!-- WRITEUP -->
+
+            <article class="writeup-article">
+
+
+                <!-- SCAN -->
+
+                <section class="writeup-section">
+
+                    <span class="writeup-section-label">
+                        01 — ENUMERATION
+                    </span>
+
+
+                    <h2>
+                        Initial Nmap scan
+                    </h2>
+
+
+                    <p>
+                        I started with an Nmap scan to identify exposed
+                        ports and determine which Windows services were
+                        available on the target.
+                    </p>
+
+
+                    <pre class="code-block"><code>nmap -sC -sV &lt;TARGET_IP&gt;</code></pre>
+
+
+                    <!-- IMAGE 1 -->
+
+                    <img src="images/image1.png"
+                        alt="The scan exposed three Windows networking services that immediately narrowed the attack surface. Port 135 indicated the presence of the Windows RPC endpoint mapper, while ports 139 and 445 indicated SMB availability. Since SMB can expose network shares and other Windows resources, I focused the next stage of enumeration on the service running on port 445."
+                        class="writeup-image">
+
+
+                    <p class="image-caption">
+                        The SMB scan reported that signing was enabled but not required. SMB signing is intended to
+                        protect the integrity of SMB communications, but when it is not enforced, clients may establish
+                        sessions without signing being mandatory. While this is an important security observation, it
+                        was not the weakness I ultimately used to obtain access on this machine.
+                    </p>
+
+
+                    <div class="finding-box">
+
+                        <span class="finding-label">
+                            FINDING 01
+                        </span>
+
+
+                        <p>
+                            Ports <strong>135</strong>, <strong>139</strong>
+                            and <strong>445</strong> were open.
+                        </p>
+
+                    </div>
+
+
+                    <p>
+                        Port <strong>135</strong> is associated with the
+                        Windows RPC endpoint mapper, which helps clients
+                        locate available RPC services.
+                    </p>
+
+
+                    <p>
+                        Port <strong>139</strong> exposes SMB through
+                        NetBIOS, while port <strong>445</strong> provides
+                        direct SMB communication over TCP. The presence of
+                        139 and especially 445 made SMB enumeration the
+                        logical next step.
+                    </p>
+
+                </section>
+
+
+
+                <!-- SMB SECURITY -->
+
+                <section class="writeup-section">
+
+                    <span class="writeup-section-label">
+                        02 — SMB SECURITY
+                    </span>
+
+
+                    <h2>
+                        SMB2 security configuration
+                    </h2>
+
+
+                    <p>
+                        During SMB enumeration, the host reported that
+                        message signing was enabled but not required.
+                    </p>
+
+
+                    <!-- IMAGE 2 -->
+
+                    <img src="images/image2.png" alt="SMB scan showing message signing enabled but not required"
+                        class="writeup-image">
+
+
+                    <p class="image-caption">
+                        SMB security information showing signing enabled but not required.
+                    </p>
+
+
+                    <div class="finding-box">
+
+                        <span class="finding-label">
+                            FINDING 02
+                        </span>
+
+
+                        <p>
+                            SMB signing was enabled but
+                            <strong>not required</strong>.
+                        </p>
+
+                    </div>
+
+
+                    <p>
+                        SMB signing is designed to provide integrity
+                        protection for SMB messages. When signing is not
+                        required, clients may be able to communicate with
+                        the server without establishing signed SMB sessions.
+                    </p>
+
+
+                    <p>
+                        In this machine, however, the more immediate
+                        security issue was not the signing configuration.
+                        The primary attack path came from being able to
+                        authenticate to SMB without a password and then
+                        enumerate accessible shares.
+                    </p>
+
+                </section>
+
+
+
+                <!-- CRACKMAPEXEC -->
+
+                <section class="writeup-section">
+
+                    <span class="writeup-section-label">
+                        03 — SMB ENUMERATION
+                    </span>
+
+
+                    <h2>
+                        Identifying the SMB host
+                    </h2>
+
+
+                    <p>
+                        CrackMapExec identified the host as Windows 10 / Server 2019 Build 17763 and confirmed the
+                        target hostname as DANCING. With the SMB service fingerprinted, the next question was whether
+                        the server would accept an unauthenticated or anonymous session.
+                    </p>
+
+
+                    <pre class="code-block"><code>crackmapexec smb &lt;TARGET_IP&gt;</code></pre>
+
+
+                    <!-- IMAGE 3 -->
+
+                    <img src="images/image3.png" alt="CrackMapExec SMB enumeration showing Windows version and hostname"
+                        class="writeup-image">
+
+
+                    <p class="image-caption">
+                        CrackMapExec identifying the target operating system and SMB configuration.
+                    </p>
+
+
+                    <div class="finding-box">
+
+                        <span class="finding-label">
+                            FINDING 03
+                        </span>
+
+
+                        <p>
+                            The host identified itself as
+                            <strong>Windows 10 / Server 2019 Build 17763 x64</strong>
+                            with hostname <strong>DANCING</strong>.
+                        </p>
+
+                    </div>
+
+
+                    <p>
+                        The output also confirmed that SMB signing was
+                        not enforced and that SMBv1 was disabled. This
+                        provided useful context for the next step:
+                        testing whether SMB resources could be accessed
+                        anonymously.
+                    </p>
+
+                </section>
+
+
+
+                <!-- SHARE ENUMERATION -->
+
+                <section class="writeup-section">
+
+                    <span class="writeup-section-label">
+                        04 — SHARE ENUMERATION
+                    </span>
+
+
+                    <h2>
+                        Testing anonymous SMB access
+                    </h2>
+
+
+                    <p>
+                        Testing the Anonymous account with a blank password returned the available shares and their
+                        permissions. ADMIN$ and C$ were inaccessible from this session, while IPC$ was readable. The
+                        important discovery was WorkShares, which provided both read and write access. This gave me a
+                        direct path to investigate the share's contents without needing privileged credentials.
+                    </p>
+
+
+                    <pre
+                        class="code-block"><code>crackmapexec smb &lt;TARGET_IP&gt; -u 'Anonymous' -p '' --shares</code></pre>
+
+
+                    <!-- IMAGE 4 -->
+
+                    <img src="images/image4.png" alt="CrackMapExec share enumeration using anonymous SMB access"
+                        class="writeup-image">
+
+
+                    <p class="image-caption">
+                        Enumerating SMB shares using anonymous authentication.
+                    </p>
+
+
+                    <div class="finding-box">
+
+                        <span class="finding-label">
+                            FINDING 04
+                        </span>
+
+
+                        <p>
+                            Anonymous SMB authentication was accepted,
+                            allowing the available shares and permissions
+                            to be enumerated.
+                        </p>
+
+                    </div>
+
+
+                    <p>
+                        The share listing showed several standard Windows
+                        administrative shares as well as a custom
+                        <strong>WorkShares</strong> share.
+                    </p>
+
+
+                    <ul>
+
+                        <li>
+                            <strong>ADMIN$</strong> — administrative share;
+                            no usable permissions from the anonymous session.
+                        </li>
+
+                        <li>
+                            <strong>C$</strong> — administrative disk share;
+                            no usable permissions from the anonymous session.
+                        </li>
+
+                        <li>
+                            <strong>IPC$</strong> — inter-process communication
+                            share; readable from the tested session.
+                        </li>
+
+                        <li>
+                            <strong>WorkShares</strong> — accessible with
+                            read and write permissions.
+                        </li>
+
+                    </ul>
+
+
+                    <p>
+                        The custom <strong>WorkShares</strong> share was the
+                        most interesting target because it was accessible
+                        anonymously and provided direct access to files.
+                    </p>
+
+                </section>
+
+
+
+                <!-- SMB ACCESS -->
+
+                <section class="writeup-section">
+
+                    <span class="writeup-section-label">
+                        05 — SMB ACCESS
+                    </span>
+
+
+                    <h2>
+                        Accessing WorkShares
+                    </h2>
+
+
+                    <p>
+                        With the share identified and accessible using the
+                        anonymous account, I connected directly with the
+                        SMB client to inspect its contents.
+                    </p>
+
+
+                    <pre class="code-block"><code>smbclient //&lt;TARGET_IP&gt;/WorkShares -U Anonymous</code></pre>
+
+
+                    <!-- IMAGE 5 -->
+
+                    <img src="images/image5.png" alt="SMBClient connection to the WorkShares share using Anonymous"
+                        class="writeup-image">
+
+
+                    <p class="image-caption">
+                        Connecting to the WorkShares SMB share as Anonymous.
+                    </p>
+
+
+                    <h3 class="writeup-subtitle">
+                        Exploring the share
+                    </h3>
+
+
+                    <p>
+                        Once connected, I enumerated the directories and
+                        files available through the share and located the
+                        flag.
+                    </p>
+
+
+                    <pre class="code-block"><code>ls
+cd &lt;directory&gt;
+ls
+get flag.txt</code></pre>
+
+
+                    <p>
+                        The flag was retrieved directly from the accessible
+                        SMB share without requiring a privileged account.
+                    </p>
+
+                </section>
+
+
+
+                <!-- WHAT I LEARNED -->
+
+                <section class="writeup-section">
+
+                    <span class="writeup-section-label">
+                        06 — WHAT I LEARNED
+                    </span>
+
+
+                    <h2>
+                        Lessons from Dancing
+                    </h2>
+
+
+                    <p>
+                        Dancing reinforced the value of service-specific
+                        enumeration. Once SMB was identified, understanding
+                        the host configuration, authentication options and
+                        share permissions was more useful than immediately
+                        searching for a software exploit.
+                    </p>
+
+
+                    <p>
+                        The main weakness was the combination of anonymous
+                        SMB access and excessive permissions on the
+                        <strong>WorkShares</strong> share. This allowed
+                        unauthenticated users to reach files that should
+                        not have been exposed.
+                    </p>
+
+
+                    <div class="page-tag-row">
+
+                        <span class="page-tag">
+                            NMAP
+                        </span>
+
+                        <span class="page-tag">
+                            SMB
+                        </span>
+
+                        <span class="page-tag">
+                            CRACKMAPEXEC
+                        </span>
+
+                        <span class="page-tag">
+                            SMBC​LIENT
+                        </span>
+
+                        <span class="page-tag">
+                            ANONYMOUS ACCESS
+                        </span>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- TOOLS -->
+
+                <section class="writeup-section">
+
+                    <span class="writeup-section-label">
+                        07 — TOOLS &amp; TECHNIQUES
+                    </span>
+
+
+                    <h2>
+                        Tools used
+                    </h2>
+
+
+                    <ul>
+
+                        <li>
+                            <strong>Nmap</strong> — port and service enumeration
+                        </li>
+
+                        <li>
+                            <strong>CrackMapExec</strong> — SMB host,
+                            authentication and share enumeration
+                        </li>
+
+                        <li>
+                            <strong>smbclient</strong> — direct interaction
+                            with the SMB share
+                        </li>
+
+                    </ul>
+
+                </section>
+
+
+
+                <!-- NAVIGATION -->
+
+                <div class="writeup-navigation">
+
+
+                    <a href="/writeups/htb/starting-point/tier-0/fawn/">
+
+                        <span>
+                            PREVIOUS
+                        </span>
+
+                        <strong>
+                            ← Fawn
+                        </strong>
+
+                    </a>
+
+
+                    <a href="/writeups/htb/starting-point/tier-0/redeemer/">
+
+                        <span>
+                            NEXT MACHINE
+                        </span>
+
+                        <strong>
+                            Redeemer →
+                        </strong>
+
+                    </a>
+
+
+                </div>
+
+
+            </article>
+
+
+        </div>
+
+    </main>
+
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div class="footer-brand">
+
+            <span class="brand-mark">
+                &gt;_
+            </span>
+
+            <strong>
+                Ozz961
+            </strong>
+
+        </div>
+
+
+        <p>
+            Cybersecurity · Pentesting · AppSec · AI Security
+        </p>
+
+
+        <span>
+            © <span id="year"></span> Ozz961
+        </span>
+
+    </footer>
+
+
+    <script src="../../../../../script.js"></script>
+
+</body>
+
+</html>

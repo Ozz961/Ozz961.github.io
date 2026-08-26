@@ -1226,7 +1226,7 @@ a {
 .writeup-info p {
     color: var(--muted);
 
-    font-size: 0.78rem;
+    font-size: 0.88rem;
 }
 
 .writeup-arrow {
@@ -1800,7 +1800,7 @@ footer {
 
     line-height: 1.35;
 
-    margin-bottom: 12px;
+    margin-bottom: 8px;
 }
 
 .certification-card p {
@@ -1878,7 +1878,7 @@ footer {
 }
 
 .page-header {
-    padding: 90px 0 50px;
+    padding: 15px 0 50px;
 }
 
 .page-breadcrumb {
@@ -1887,7 +1887,7 @@ footer {
     gap: 8px;
     align-items: center;
 
-    margin-bottom: 24px;
+    margin-bottom: 12px;
 
     color: #6f687b;
 
@@ -2064,7 +2064,7 @@ footer {
     }
 
     .page-header {
-        padding: 65px 0 40px;
+        padding: 35px 0 40px;
     }
 
     .page-grid {
@@ -2092,14 +2092,13 @@ footer {
 
 .writeup-section-label {
     display: block;
-
     margin-bottom: 12px;
 
     color: var(--purple-bright);
 
     font-family: "JetBrains Mono", monospace;
 
-    font-size: 0.62rem;
+    font-size: 0.7rem;
 
     letter-spacing: 1.7px;
 }
@@ -2118,7 +2117,7 @@ footer {
     margin-top: 28px;
     margin-bottom: 10px;
 
-    font-size: 1.05rem;
+    font-size: 1.5rem;
 }
 
 .writeup-section p {
@@ -2144,10 +2143,8 @@ footer {
 }
 
 .writeup-intro {
-    margin-bottom: 65px;
-
+    margin-bottom: 35px;
     padding-bottom: 35px;
-
     border-bottom: 1px solid var(--border);
 }
 
@@ -2317,4 +2314,148 @@ footer {
     .writeup-navigation {
         grid-template-columns: 1fr;
     }
+}
+
+/* =========================
+   WRITEUP BACK BUTTON
+========================= */
+
+/* =========================
+   WRITEUP BACK BUTTON
+========================= */
+
+.writeup-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 11px;
+
+    margin: 35px 0 22px;
+    padding: 11px 17px;
+
+    border: 1px solid var(--border);
+    border-radius: 8px;
+
+    color: var(--text-soft);
+
+    background: rgba(255, 255, 255, 0.02);
+
+    font-family: "JetBrains Mono", monospace;
+    font-size: 1.1rem;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition:
+        color 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.writeup-back span {
+    color: var(--purple-bright);
+
+    font-size: 1.2rem;
+    font-weight: 600;
+
+    line-height: 1;
+
+    transition: transform 0.2s ease;
+}
+
+.writeup-back:hover {
+    color: var(--text);
+
+    background: rgba(155, 92, 255, 0.07);
+
+    border-color: var(--border-hover);
+
+    transform: translateX(-3px);
+}
+
+.writeup-back:hover span {
+    transform: translateX(-4px);
+}
+
+/* =========================
+   WRITEUP RESOURCES
+========================= */
+
+.resource-box {
+    margin: 28px 0 35px;
+    padding: 0;
+
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+
+.resource-header {
+    padding: 13px 0 8px;
+}
+
+.resource-label {
+    color: var(--purple-bright);
+
+    font-family: "JetBrains Mono", monospace;
+
+    font-size: 0.62rem;
+
+    letter-spacing: 1.5px;
+}
+
+.resource-link {
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    padding: 14px 8px;
+
+    color: var(--text-soft);
+
+    text-decoration: none;
+
+    transition:
+        background 0.2s ease,
+        padding 0.2s ease,
+        color 0.2s ease;
+}
+
+.resource-link:hover {
+    padding-left: 13px;
+
+    background: rgba(155, 92, 255, 0.04);
+
+    color: var(--text);
+}
+
+.resource-icon {
+    color: var(--purple-bright);
+
+    font-family: "JetBrains Mono", monospace;
+
+    font-size: 0.9rem;
+}
+
+.resource-content {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 2px;
+}
+
+.resource-content strong {
+    font-size: 0.78rem;
+
+    font-weight: 500;
+}
+
+.resource-content small {
+    color: #6f687b;
+
+    font-family: "JetBrains Mono", monospace;
+
+    font-size: 0.56rem;
 }
