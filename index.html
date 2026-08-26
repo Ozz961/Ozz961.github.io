@@ -4,57 +4,155 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Ozz961 | Cybersecurity</title>
+    <title>Ozz961 — Cybersecurity</title>
 
-    <meta name="description"
-          content="Ozz961 — Cybersecurity, penetration testing, AppSec, AI security, research, tools and writeups.">
+    <meta
+        name="description"
+        content="Ozz961 — Cybersecurity, penetration testing, AppSec, AI security, research, tooling, writeups and projects."
+    >
+
+    <meta name="theme-color" content="#08070d">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet"
+    >
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <header class="navbar">
-        <div class="logo">Ozz961<span>.</span></div>
+    <!-- Ambient background -->
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
 
-        <nav>
+    <!-- NAVIGATION -->
+    <header class="navbar">
+        <a href="#" class="brand">
+            <span class="brand-mark">&gt;_</span>
+            <span>Ozz961</span>
+        </a>
+
+        <nav class="nav-links">
             <a href="#writeups">Writeups</a>
             <a href="#projects">Projects</a>
             <a href="#tools">Tools</a>
+            <a href="#research">Research</a>
             <a href="#about">About</a>
         </nav>
+
+        <a
+            href="https://github.com/Ozz961"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="github-link"
+        >
+            GitHub ↗
+        </a>
     </header>
 
 
     <main>
 
         <!-- HERO -->
-
         <section class="hero">
+
+            <div class="hero-grid"></div>
 
             <div class="hero-content">
 
-                <p class="eyebrow">CYBERSECURITY • OFFENSIVE SECURITY</p>
+                <div class="status-pill">
+                    <span class="status-dot"></span>
+                    Building & learning in public
+                </div>
+
+                <p class="eyebrow">CYBERSECURITY · OFFENSIVE SECURITY</p>
 
                 <h1>
-                    Breaking things.<br>
+                    Breaking things.
+                    <br>
                     <span>Understanding them.</span>
                 </h1>
 
-                <p class="hero-description">
-                    A personal collection of cybersecurity writeups,
-                    projects, tools, research and everything I'm learning
-                    along the way.
+                <p class="hero-text">
+                    A personal security lab documenting penetration testing,
+                    application security, AI security, research, tooling,
+                    projects, writeups, and everything I learn along the way.
                 </p>
 
-                <div class="hero-buttons">
-                    <a href="#writeups" class="button primary">
-                        Explore Writeups
+                <div class="hero-actions">
+                    <a href="#writeups" class="btn btn-primary">
+                        Explore the lab
+                        <span>↗</span>
                     </a>
 
-                    <a href="#projects" class="button secondary">
-                        View Projects
+                    <a href="#about" class="btn btn-secondary">
+                        About me
                     </a>
+                </div>
+
+                <div class="hero-meta">
+                    <span>Penetration Testing</span>
+                    <span>AppSec</span>
+                    <span>AI Security</span>
+                    <span>Security Research</span>
+                </div>
+
+            </div>
+
+            <div class="hero-terminal">
+
+                <div class="terminal-top">
+                    <div class="terminal-dots">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                    <span class="terminal-title">
+                        ozz961@security-lab
+                    </span>
+                </div>
+
+                <div class="terminal-body">
+
+                    <p>
+                        <span class="terminal-purple">$</span>
+                        whoami
+                    </p>
+
+                    <p class="terminal-output">
+                        cybersecurity enthusiast
+                    </p>
+
+                    <p>
+                        <span class="terminal-purple">$</span>
+                        focus
+                    </p>
+
+                    <p class="terminal-output">
+                        pentesting · appsec · ai security
+                    </p>
+
+                    <p>
+                        <span class="terminal-purple">$</span>
+                        current_status
+                    </p>
+
+                    <p class="terminal-output">
+                        learning → building → breaking
+                    </p>
+
+                    <p>
+                        <span class="terminal-purple">$</span>
+                        _
+                        <span class="cursor"></span>
+                    </p>
+
                 </div>
 
             </div>
@@ -62,58 +160,110 @@
         </section>
 
 
-        <!-- AREAS -->
+        <!-- FOCUS -->
+        <section class="section" id="focus">
 
-        <section class="section">
+            <div class="section-header">
+                <div>
+                    <span class="section-number">01</span>
+                    <span class="section-label">FOCUS</span>
+                </div>
 
-            <div class="section-heading">
-                <p class="eyebrow">01 — FOCUS</p>
-
-                <h2>Areas of Interest</h2>
+                <h2>Where I spend my time.</h2>
 
                 <p>
-                    The areas I'm currently exploring and developing.
+                    Practical security work, research and projects across
+                    offensive security and emerging technologies.
                 </p>
             </div>
 
 
-            <div class="cards">
+            <div class="focus-grid">
 
-                <div class="card">
-                    <span class="card-number">01</span>
+                <article class="focus-card large">
+                    <div class="card-top">
+                        <span class="card-icon">01</span>
+                        <span class="card-category">OFFENSIVE</span>
+                    </div>
+
                     <h3>Penetration Testing</h3>
-                    <p>
-                        Offensive security, enumeration, exploitation
-                        and privilege escalation.
-                    </p>
-                </div>
 
-                <div class="card">
-                    <span class="card-number">02</span>
-                    <h3>Application Security</h3>
                     <p>
-                        Web applications, APIs, vulnerabilities and
-                        security testing.
+                        Enumeration, exploitation, privilege escalation,
+                        post-exploitation and security methodology.
                     </p>
-                </div>
 
-                <div class="card">
-                    <span class="card-number">03</span>
+                    <div class="card-tags">
+                        <span>Network</span>
+                        <span>Web</span>
+                        <span>Linux</span>
+                        <span>Windows</span>
+                    </div>
+                </article>
+
+
+                <article class="focus-card">
+                    <div class="card-top">
+                        <span class="card-icon">02</span>
+                        <span class="card-category">WEB</span>
+                    </div>
+
+                    <h3>AppSec</h3>
+
+                    <p>
+                        Web applications, APIs, authentication, authorization
+                        and vulnerability research.
+                    </p>
+
+                    <div class="card-tags">
+                        <span>OWASP</span>
+                        <span>APIs</span>
+                        <span>Burp</span>
+                    </div>
+                </article>
+
+
+                <article class="focus-card">
+                    <div class="card-top">
+                        <span class="card-icon">03</span>
+                        <span class="card-category">EMERGING</span>
+                    </div>
+
                     <h3>AI Security</h3>
-                    <p>
-                        AI red teaming, LLM security and
-                        security automation.
-                    </p>
-                </div>
 
-                <div class="card">
-                    <span class="card-number">04</span>
-                    <h3>Security Tooling</h3>
                     <p>
-                        Building tools, scripts and automation
-                        for security research.
+                        AI red teaming, LLM security, prompt injection,
+                        agent security and AI-powered security tooling.
                     </p>
-                </div>
+
+                    <div class="card-tags">
+                        <span>LLMs</span>
+                        <span>Red Teaming</span>
+                        <span>Agents</span>
+                    </div>
+                </article>
+
+
+                <article class="focus-card wide">
+                    <div class="card-top">
+                        <span class="card-icon">04</span>
+                        <span class="card-category">BUILD</span>
+                    </div>
+
+                    <h3>Security Tooling</h3>
+
+                    <p>
+                        Custom tools, automation, scripts and experiments
+                        built to solve security problems.
+                    </p>
+
+                    <div class="card-tags">
+                        <span>Python</span>
+                        <span>Bash</span>
+                        <span>Automation</span>
+                        <span>Security Engineering</span>
+                    </div>
+                </article>
 
             </div>
 
@@ -121,34 +271,100 @@
 
 
         <!-- WRITEUPS -->
-
         <section class="section" id="writeups">
 
-            <div class="section-heading">
-                <p class="eyebrow">02 — WRITEUPS</p>
-
-                <h2>Things I've Broken</h2>
-
-                <p>
-                    Hands-on labs, CTFs and penetration testing notes.
-                </p>
-            </div>
-
-
-            <div class="feature-card">
+            <div class="section-header split">
 
                 <div>
-                    <span class="tag">HACK THE BOX</span>
+                    <span class="section-number">02</span>
+                    <span class="section-label">WRITEUPS</span>
 
-                    <h3>Starting Point — Tier 0</h3>
+                    <h2>Things I've broken.</h2>
 
                     <p>
-                        Working through the fundamentals of enumeration,
-                        exploitation and offensive security.
+                        Hands-on labs, challenges and security experiments.
                     </p>
                 </div>
 
-                <a href="#" class="arrow">→</a>
+                <a href="#" class="text-link">
+                    View all →
+                </a>
+
+            </div>
+
+
+            <div class="writeup-list">
+
+                <a href="#" class="writeup-item">
+
+                    <div class="writeup-number">01</div>
+
+                    <div class="writeup-info">
+
+                        <span class="writeup-type">HACK THE BOX</span>
+
+                        <h3>
+                            Starting Point — Tier 0: Foundations
+                        </h3>
+
+                        <p>
+                            Meow · Fawn · Dancing · and the fundamentals
+                            of enumeration and exploitation.
+                        </p>
+
+                    </div>
+
+                    <span class="writeup-arrow">↗</span>
+
+                </a>
+
+
+                <a href="#" class="writeup-item">
+
+                    <div class="writeup-number">02</div>
+
+                    <div class="writeup-info">
+
+                        <span class="writeup-type">PENTESTING</span>
+
+                        <h3>
+                            Web Application Security
+                        </h3>
+
+                        <p>
+                            Practical notes covering reconnaissance,
+                            authentication, APIs and common vulnerabilities.
+                        </p>
+
+                    </div>
+
+                    <span class="writeup-arrow">↗</span>
+
+                </a>
+
+
+                <a href="#" class="writeup-item">
+
+                    <div class="writeup-number">03</div>
+
+                    <div class="writeup-info">
+
+                        <span class="writeup-type">AI SECURITY</span>
+
+                        <h3>
+                            AI Security Research
+                        </h3>
+
+                        <p>
+                            Experiments, techniques and lessons from exploring
+                            the security of modern AI systems.
+                        </p>
+
+                    </div>
+
+                    <span class="writeup-arrow">↗</span>
+
+                </a>
 
             </div>
 
@@ -156,40 +372,195 @@
 
 
         <!-- PROJECTS -->
-
         <section class="section" id="projects">
 
-            <div class="section-heading">
-                <p class="eyebrow">03 — PROJECTS</p>
+            <div class="section-header split">
 
-                <h2>Things I've Built</h2>
+                <div>
+                    <span class="section-number">03</span>
+                    <span class="section-label">PROJECTS</span>
 
-                <p>
-                    Security projects, experiments and research.
-                </p>
-            </div>
-
-
-            <div class="cards">
-
-                <div class="card project">
-                    <span class="tag">AI SECURITY</span>
-
-                    <h3>Coming Soon</h3>
+                    <h2>Things I've built.</h2>
 
                     <p>
-                        AI security projects and experiments.
+                        Security projects, experiments and personal research.
                     </p>
                 </div>
 
-                <div class="card project">
-                    <span class="tag">TOOLING</span>
+                <a href="#" class="text-link">
+                    View all →
+                </a>
 
-                    <h3>Coming Soon</h3>
+            </div>
+
+
+            <div class="project-grid">
+
+                <article class="project-card featured">
+
+                    <div class="project-glow"></div>
+
+                    <div class="project-content">
+
+                        <span class="project-type">
+                            AI SECURITY · PROJECT
+                        </span>
+
+                        <h3>
+                            AI Security Lab
+                        </h3>
+
+                        <p>
+                            A collection of experiments exploring AI security,
+                            offensive techniques and security automation.
+                        </p>
+
+                        <div class="project-footer">
+                            <span>Research</span>
+                            <span>AI</span>
+                            <span>Security</span>
+                        </div>
+
+                    </div>
+
+                    <span class="project-number">01</span>
+
+                </article>
+
+
+                <article class="project-card">
+
+                    <div class="project-content">
+
+                        <span class="project-type">
+                            SECURITY TOOLING
+                        </span>
+
+                        <h3>
+                            Security Tooling
+                        </h3>
+
+                        <p>
+                            Custom scripts and tools for reconnaissance,
+                            enumeration and offensive security.
+                        </p>
+
+                        <div class="project-footer">
+                            <span>Python</span>
+                            <span>Automation</span>
+                        </div>
+
+                    </div>
+
+                    <span class="project-number">02</span>
+
+                </article>
+
+
+                <article class="project-card">
+
+                    <div class="project-content">
+
+                        <span class="project-type">
+                            RESEARCH
+                        </span>
+
+                        <h3>
+                            Security Research
+                        </h3>
+
+                        <p>
+                            Vulnerability research, experiments and technical
+                            investigations.
+                        </p>
+
+                        <div class="project-footer">
+                            <span>Research</span>
+                            <span>AppSec</span>
+                        </div>
+
+                    </div>
+
+                    <span class="project-number">03</span>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- TOOLS -->
+        <section class="section" id="tools">
+
+            <div class="section-header">
+
+                <div>
+                    <span class="section-number">04</span>
+                    <span class="section-label">TOOLS</span>
+
+                    <h2>Things I use.</h2>
 
                     <p>
-                        Security tools and automation.
+                        Tools and technologies used throughout my security work.
                     </p>
+                </div>
+
+            </div>
+
+
+            <div class="tools-cloud">
+
+                <span>Nmap</span>
+                <span>Burp Suite</span>
+                <span>Metasploit</span>
+                <span>Hydra</span>
+                <span>Gobuster</span>
+                <span>Linux</span>
+                <span>Windows</span>
+                <span>Python</span>
+                <span>Bash</span>
+                <span>PowerShell</span>
+                <span>Git</span>
+                <span>Docker</span>
+                <span>OWASP</span>
+                <span>Wireshark</span>
+                <span>BloodHound</span>
+
+            </div>
+
+        </section>
+
+
+        <!-- RESEARCH -->
+        <section class="section research-section" id="research">
+
+            <div class="research-box">
+
+                <div class="research-content">
+
+                    <span class="section-label">
+                        05 — RESEARCH
+                    </span>
+
+                    <h2>
+                        Curiosity is part of the process.
+                    </h2>
+
+                    <p>
+                        Notes, experiments and investigations into things
+                        that break, behave strangely, or are worth understanding.
+                    </p>
+
+                    <a href="#" class="btn btn-primary">
+                        Explore research
+                        <span>↗</span>
+                    </a>
+
+                </div>
+
+                <div class="research-decoration">
+                    <span>0x961</span>
                 </div>
 
             </div>
@@ -198,23 +569,56 @@
 
 
         <!-- ABOUT -->
+        <section class="section about-section" id="about">
 
-        <section class="section about" id="about">
+            <div class="about-grid">
 
-            <div class="section-heading">
+                <div>
 
-                <p class="eyebrow">04 — ABOUT</p>
+                    <span class="section-number">06</span>
+                    <span class="section-label">ABOUT</span>
 
-                <h2>Ozz961</h2>
+                    <h2>
+                        Hi, I'm
+                        <span>[Your Full Name]</span>.
+                    </h2>
 
-                <p>
-                    <strong>[YOUR FULL NAME]</strong>
-                </p>
+                </div>
 
-                <p>
-                    Cybersecurity enthusiast focused on offensive security,
-                    penetration testing, AppSec and AI security.
-                </p>
+                <div class="about-copy">
+
+                    <p>
+                        I'm building my skills across cybersecurity,
+                        offensive security, application security and AI security.
+                    </p>
+
+                    <p>
+                        This site is my personal lab — a place to document
+                        what I learn, what I build, what I break and what
+                        I discover along the way.
+                    </p>
+
+                    <div class="about-links">
+
+                        <a
+                            href="https://github.com/Ozz961"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            GitHub ↗
+                        </a>
+
+                        <a href="#">
+                            LinkedIn ↗
+                        </a>
+
+                        <a href="#">
+                            Medium ↗
+                        </a>
+
+                    </div>
+
+                </div>
 
             </div>
 
@@ -223,15 +627,21 @@
     </main>
 
 
+    <!-- FOOTER -->
     <footer>
 
-        <div>
+        <div class="footer-brand">
+            <span class="brand-mark">&gt;_</span>
             <strong>Ozz961</strong>
         </div>
 
         <p>
-            Cybersecurity • Pentesting • AppSec • AI Security
+            Built for learning, breaking and understanding.
         </p>
+
+        <span>
+            © <span id="year"></span> Ozz961
+        </span>
 
     </footer>
 
